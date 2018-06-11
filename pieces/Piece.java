@@ -8,8 +8,9 @@ import board.Color;
 import java.util.ArrayList;
 
 public abstract class Piece {
-    Coordinate coord;
-    Color color;
+    private Coordinate coord;
+    private Color color;
+    private boolean alive = true;
 
     protected Coordinate getCoordinate() {
         return this.coord;
@@ -23,6 +24,13 @@ public abstract class Piece {
     protected void setColor(Color c) {
         this.color = c;
     }
+    public boolean isAlive() {
+        return alive;
+    }
+    public void kill() {
+        alive = false;
+    }
 
-    protected abstract ArrayList<Square> validMoves(ChessBoard board);
+
+    public abstract ArrayList<Square> validMoves(ChessBoard board);
 }

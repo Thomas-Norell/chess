@@ -31,10 +31,10 @@ public class Pawn extends Piece {
         if (front.isValid() && !front.isOccupied()) {
             moves.add(front);
         }
-        if (frontLeft.isValid() && !frontLeft.Occupant().color.sameColor(this.color)) {
+        if (frontLeft.isValid() && !frontLeft.Occupant().getColor().sameColor(this.getColor())) {
             moves.add(frontLeft);
         }
-        if (frontRight.isValid() && !frontRight.Occupant().color.sameColor(this.color)) {
+        if (frontRight.isValid() && !frontRight.Occupant().getColor().sameColor(this.getColor())) {
             moves.add(frontRight);
         }
         return moves;
