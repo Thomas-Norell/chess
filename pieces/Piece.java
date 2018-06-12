@@ -38,18 +38,24 @@ public abstract class Piece {
     }
     public void kill() {
         alive = false;
+        if (this.color.isWhite()) {
+            board.getWhitePieces().remove(this);
+        }
+        else {
+            board.getBlackPieces().remove(this);
+        }
     }
     public abstract Piece deepCopy(ChessBoard newBoard);
 
     public abstract ArrayList<Square> validMoves(ChessBoard board);
 
-    public final void move(Square dest, ChessBoard board) {
+    public final void move(Square dest) {
         Square source = board.getSquare(this.getCoordinate());
         this.setCoordinate(dest.getCoord());
         source.setOccupant(null);
         if (dest.isOccupied()) {
             dest.Occupant().kill();
         }
-
+        dest.setOccupant(this);
     }
 }

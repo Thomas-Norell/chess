@@ -7,8 +7,8 @@ import java.util.HashMap;
 
 public class ChessBoard {
     private Square[] board = new Square[64];
-    ArrayList<Piece> whitePieces;
-    ArrayList<Piece> blackPieces;
+    private ArrayList<Piece> whitePieces;
+    private ArrayList<Piece> blackPieces;
     public ChessBoard() {
         whitePieces = new ArrayList();
         blackPieces = new ArrayList();
@@ -140,5 +140,13 @@ public class ChessBoard {
         return move;
 
     }
+    public ArrayList<Piece> getWhitePieces() {
+        return whitePieces;
+    }
+
+    public ArrayList<Piece> getBlackPieces() {
+        return blackPieces;
+    }
+
 
 }
