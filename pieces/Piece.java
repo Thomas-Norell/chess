@@ -12,10 +12,10 @@ public abstract class Piece {
     private Color color;
     private boolean alive = true;
 
-    protected Coordinate getCoordinate() {
+    public Coordinate getCoordinate() {
         return this.coord;
     }
-    protected void setCoordinate(Coordinate c) {
+    public void setCoordinate(Coordinate c) {
         this.coord = c;
     }
     protected Color getColor() {
