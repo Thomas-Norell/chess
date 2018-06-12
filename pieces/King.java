@@ -5,6 +5,7 @@ import board.Coordinate;
 import board.Square;
 import java.util.ArrayList;
 import board.Color;
+import javafx.scene.image.Image;
 
 public class King extends Piece {
 
@@ -33,6 +34,7 @@ public class King extends Piece {
 
     @Override
     public ArrayList<Square> validMoves() {
+        //TODO: Castle
         ChessBoard board = this.getBoard();
         ArrayList<Square> potentials = new ArrayList();
         ArrayList<Square> moves = new ArrayList();
@@ -49,5 +51,12 @@ public class King extends Piece {
             verifyAdd(moves, s);
         }
         return moves;
+    }
+
+    public Image image() {
+        if (getColor().isWhite()) {
+            return new Image("images/whiteKing.png");
+        }
+        return new Image("images/blackKing.png");
     }
 }

@@ -5,6 +5,7 @@ import board.Coordinate;
 import board.Square;
 import java.util.ArrayList;
 import board.Color;
+import javafx.scene.image.Image;
 
 public class Rook extends Piece {
 
@@ -59,5 +60,12 @@ public class Rook extends Piece {
         checkAdd(this, 1, moves, board);
         checkAdd(this, -1, moves, board);
         return moves;
+    }
+
+    public Image image() {
+        if (getColor().isWhite()) {
+            return new Image("images/whiteRook.png");
+        }
+        return new Image("images/blackRook.png");
     }
 }

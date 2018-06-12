@@ -1,4 +1,5 @@
 package board;
+import javafx.scene.image.Image;
 import pieces.Piece;
 public class Square {
     private Color color;
@@ -43,6 +44,13 @@ public class Square {
     }
     public boolean isValid() {
         return valid;
+    }
+
+    public Image image() {
+        if (getColor().isWhite()) {
+            return new Image("images/whiteSquare.png");
+        }
+        return new Image("images/blackSquare.png");
     }
 
 }

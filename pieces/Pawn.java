@@ -5,6 +5,7 @@ import board.Coordinate;
 import board.Square;
 import java.util.ArrayList;
 import board.Color;
+import javafx.scene.image.Image;
 
 public class Pawn extends Piece {
     final int direction;
@@ -52,5 +53,12 @@ public class Pawn extends Piece {
             }
         }
         return moves;
+    }
+
+    public Image image() {
+        if (getColor().isWhite()) {
+            return new Image("images/whitePawn.png");
+        }
+        return new Image("images/blackPawn.png");
     }
 }

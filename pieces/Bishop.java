@@ -5,6 +5,7 @@ import board.Coordinate;
 import board.Square;
 import java.util.ArrayList;
 import board.Color;
+import javafx.scene.image.Image;
 
 public class Bishop extends Piece {
 
@@ -48,5 +49,12 @@ public class Bishop extends Piece {
         checkAdd(this, 1, -1, moves, board);
         checkAdd(this, -1, -1, moves, board);
         return moves;
+    }
+
+    public Image image() {
+        if (getColor().isWhite()) {
+            return new Image("images/whiteBishop.png");
+        }
+        return new Image("images/blackBishop.png");
     }
 }

@@ -5,6 +5,8 @@ import board.Coordinate;
 import board.Square;
 import board.Color;
 
+import javafx.scene.image.Image;
+
 import java.util.ArrayList;
 
 public abstract class Piece {
@@ -58,4 +60,6 @@ public abstract class Piece {
         }
         dest.setOccupant(this);
     }
+
+    public abstract Image image();
 }

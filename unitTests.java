@@ -24,6 +24,14 @@ public class unitTests {
     }
 
     @Test
+    public void checkColor(){
+
+        ChessBoard b = new ChessBoard();
+        assertFalse(b.getSquare(new Coordinate(0,0)).getColor().isWhite());
+        assertTrue(b.getSquare(new Coordinate(1,0)).getColor().isWhite());
+    }
+
+    @Test
     public void deepBoardCopy(){
         ChessBoard b = new ChessBoard();
         ChessBoard c = new ChessBoard(b);

@@ -12,13 +12,23 @@ public class ChessBoard {
     public ChessBoard() {
         whitePieces = new ArrayList();
         blackPieces = new ArrayList();
+        int mode;
         for (int i = 0; i < 64; i++) {
-            if (i % 2 == 0) {
-                board[i] = new Square(new White(), new Coordinate(i % 8, i / 8), this);
+            if ((i / 8) % 2 == 1) {
+                mode = 0;
             }
             else {
+                mode = 1;
+            }
+
+            if ((i % 8) % 2 == mode) {
                 board[i] = new Square(new Black(), new Coordinate(i % 8, i / 8), this);
             }
+            else {
+                board[i] = new Square(new White(), new Coordinate(i % 8, i / 8), this);
+            }
+
+
         }
         for (int x = 0; x < 8; x++) { //Fills white pawns
             Pawn thisPawn = new Pawn(new White(), new Coordinate(x, 1), this);

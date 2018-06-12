@@ -5,6 +5,7 @@ import board.Coordinate;
 import board.Square;
 import java.util.ArrayList;
 import board.Color;
+import javafx.scene.image.Image;
 
 public class Knight extends Piece {
     final int direction;
@@ -61,4 +62,11 @@ public class Knight extends Piece {
 
         return moves;
     }
+    public Image image() {
+        if (getColor().isWhite()) {
+            return new Image("images/whiteKnight.png");
+        }
+        return new Image("images/blackKnight.png");
+    }
+
 }
