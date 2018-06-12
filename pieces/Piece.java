@@ -59,6 +59,7 @@ public abstract class Piece {
             dest.Occupant().kill();
         }
         dest.setOccupant(this);
+
     }
 
     public abstract Image image();

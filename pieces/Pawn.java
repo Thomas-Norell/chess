@@ -4,6 +4,8 @@ import board.ChessBoard;
 import board.Coordinate;
 import board.Square;
 import java.util.ArrayList;
+import java.util.TreeMap;
+
 import board.Color;
 import javafx.scene.image.Image;
 
@@ -51,6 +53,7 @@ public class Pawn extends Piece {
             if (!frontFront.isOccupied()) {
                 moves.add(frontFront);
             }
+            hasMoved = true;
         }
         return moves;
     }

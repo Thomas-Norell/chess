@@ -1,4 +1,8 @@
-package board;
+package game;
+import board.ChessBoard;
+import board.Coordinate;
+import board.Square;
+import board.White;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.image.ImageView;
@@ -11,6 +15,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.layout.StackPane;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Label;
 
 public class Visualizer extends Application{
 
@@ -20,14 +28,12 @@ public class Visualizer extends Application{
 
     @Override
     public void start(Stage stage) {
-        ChessBoard board = new ChessBoard();
-        renderBoard(stage, board);
+        Controller controller = new Controller(new White(), stage);
     }
 
 
 
-    public void renderBoard(Stage stage, ChessBoard board) {
-
+    public static void renderBoard(Stage stage, ChessBoard board, Controller controller) {
         int xDim = 600;
         int yDim = 600;
 
@@ -61,6 +67,25 @@ public class Visualizer extends Application{
         stage.setTitle("Chess");
         stage.setScene(scene);
         stage.show();
+
+        gridPane.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+
+                for(Node node: gridPane.getChildren()) {
+
+                    if( node instanceof ImageView) {
+                        if( node.getBoundsInParent().contains(e.getSceneX(),  e.getSceneY())) {
+                            System.out.println( "Node: " + node + " at " + GridPane.getRowIndex( node) + "/" + GridPane.getColumnIndex( node));
+                            Square clickedSquare = board.getSquare(new Coordinate(7 - GridPane.getColumnIndex( node), 7 - GridPane.getRowIndex( node)));
+                            System.out.print(clickedSquare.Occupant());
+                            controller.addTarget(clickedSquare);
+
+                        }
+                    }
+                }
+            }
+        });
 
 
     }
