@@ -16,7 +16,7 @@ public class Queen extends Piece {
 
     @Override
     public Piece deepCopy() {
-        return new Queen(this.getColor(), this.getCoordinate());
+        return new Queen(this.getColor(), new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY()));
     }
 
 

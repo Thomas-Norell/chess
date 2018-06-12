@@ -16,7 +16,7 @@ public class King extends Piece {
 
     @Override
     public Piece deepCopy() {
-        return new King(this.getColor(), this.getCoordinate());
+        return new King(this.getColor(), new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY()));
     }
 
     private void verifyAdd(ArrayList<Square> moves, Square s) {

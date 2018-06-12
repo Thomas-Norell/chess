@@ -16,7 +16,7 @@ public class Bishop extends Piece {
 
     @Override
     public Piece deepCopy() {
-        return new Bishop(this.getColor(), this.getCoordinate());
+        return new Bishop(this.getColor(), new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY()));
     }
 
     static void checkAdd(Piece self, int xDir, int yDir, ArrayList<Square> moves, ChessBoard board) {

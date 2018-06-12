@@ -102,7 +102,7 @@ public class ChessBoard {
         board = new Square[64];
         int count = 0;
         for (Square s : b.board) {
-            board[count] = new Square(s.getColor(), s.getCoord(), this);
+            board[count] = new Square(s.getColor(), new Coordinate(s.getCoord().getX(), s.getCoord().getY()), this);
             count++;
         }
         whitePieces = new ArrayList();

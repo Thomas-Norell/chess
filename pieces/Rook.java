@@ -16,7 +16,7 @@ public class Rook extends Piece {
 
     @Override
     public Piece deepCopy() {
-        return new Rook(this.getColor(), this.getCoordinate());
+        return new Rook(this.getColor(), new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY()));
     }
 
     static void checkAdd(Piece self, int direction, ArrayList<Square> moves, ChessBoard board) {

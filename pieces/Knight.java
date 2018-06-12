@@ -24,7 +24,7 @@ public class Knight extends Piece {
 
     @Override
     public Piece deepCopy() {
-        return new Knight(this.getColor(), this.getCoordinate());
+        return new Knight(this.getColor(), new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY()));
     }
 
     private void verifyAdd(ArrayList<Square> moves, Square s) {
