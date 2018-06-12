@@ -14,6 +14,11 @@ public class King extends Piece {
         this.setColor(col);
     }
 
+    @Override
+    public Piece deepCopy() {
+        return new King(this.getColor(), this.getCoordinate());
+    }
+
     private void verifyAdd(ArrayList<Square> moves, Square s) {
         if (s.isValid()) {
             if (s.isOccupied()) {

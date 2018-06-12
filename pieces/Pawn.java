@@ -24,6 +24,11 @@ public class Pawn extends Piece {
     }
 
     @Override
+    public Piece deepCopy() {
+        return new Pawn(this.getColor(), this.getCoordinate());
+    }
+
+    @Override
     public ArrayList<Square> validMoves(ChessBoard board) {
         ArrayList<Square> moves = new ArrayList();
         Square front = board.getSquare(new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY() + direction));

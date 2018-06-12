@@ -14,6 +14,11 @@ public class Queen extends Piece {
         this.setColor(col);
     }
 
+    @Override
+    public Piece deepCopy() {
+        return new Queen(this.getColor(), this.getCoordinate());
+    }
+
 
 
     @Override

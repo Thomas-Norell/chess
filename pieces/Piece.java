@@ -30,7 +30,7 @@ public abstract class Piece {
     public void kill() {
         alive = false;
     }
-
+    public abstract Piece deepCopy();
 
     public abstract ArrayList<Square> validMoves(ChessBoard board);
 }

@@ -14,6 +14,11 @@ public class Rook extends Piece {
         this.setColor(col);
     }
 
+    @Override
+    public Piece deepCopy() {
+        return new Rook(this.getColor(), this.getCoordinate());
+    }
+
     static void checkAdd(Piece self, int direction, ArrayList<Square> moves, ChessBoard board) {
         int myX = self.getCoordinate().getX();
         int myY = self.getCoordinate().getY();

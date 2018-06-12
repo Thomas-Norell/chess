@@ -14,6 +14,11 @@ public class Bishop extends Piece {
         this.setColor(col);
     }
 
+    @Override
+    public Piece deepCopy() {
+        return new Bishop(this.getColor(), this.getCoordinate());
+    }
+
     static void checkAdd(Piece self, int xDir, int yDir, ArrayList<Square> moves, ChessBoard board) {
         int myX = self.getCoordinate().getX();
         int myY = self.getCoordinate().getY();
