@@ -53,7 +53,8 @@ public class Rook extends Piece {
     }
 
     @Override
-    public ArrayList<Square> validMoves(ChessBoard board) {
+    public ArrayList<Square> validMoves() {
+        ChessBoard board = this.getBoard();
         ArrayList<Square> moves = new ArrayList();
         checkAdd(this, 1, moves, board);
         checkAdd(this, -1, moves, board);

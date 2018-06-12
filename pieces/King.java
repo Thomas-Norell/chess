@@ -32,7 +32,8 @@ public class King extends Piece {
     }
 
     @Override
-    public ArrayList<Square> validMoves(ChessBoard board) {
+    public ArrayList<Square> validMoves() {
+        ChessBoard board = this.getBoard();
         ArrayList<Square> potentials = new ArrayList();
         ArrayList<Square> moves = new ArrayList();
         potentials.add(board.getSquare(new Coordinate(this.getCoordinate().getX() - 1, this.getCoordinate().getY() + 1)));

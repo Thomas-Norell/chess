@@ -47,7 +47,7 @@ public abstract class Piece {
     }
     public abstract Piece deepCopy(ChessBoard newBoard);
 
-    public abstract ArrayList<Square> validMoves(ChessBoard board);
+    public abstract ArrayList<Square> validMoves();
 
     public final void move(Square dest) {
         Square source = board.getSquare(this.getCoordinate());

@@ -30,7 +30,8 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public ArrayList<Square> validMoves(ChessBoard board) {
+    public ArrayList<Square> validMoves() {
+        ChessBoard board = this.getBoard();
         ArrayList<Square> moves = new ArrayList();
         Square front = board.getSquare(new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY() + direction));
         Square frontLeft = board.getSquare(new Coordinate(this.getCoordinate().getX() - direction, this.getCoordinate().getY() + direction));

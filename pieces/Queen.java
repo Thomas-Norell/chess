@@ -23,7 +23,8 @@ public class Queen extends Piece {
 
 
     @Override
-    public ArrayList<Square> validMoves(ChessBoard board) {
+    public ArrayList<Square> validMoves() {
+        ChessBoard board = this.getBoard();
         ArrayList<Square> moves = new ArrayList();
         Rook.checkAdd(this, 1, moves, board);
         Rook.checkAdd(this, -1, moves, board);
