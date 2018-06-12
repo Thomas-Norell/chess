@@ -9,14 +9,15 @@ import board.Color;
 public class Bishop extends Piece {
 
 
-    public Bishop(Color col, Coordinate c) {
-        this.setCoordinate(c);
-        this.setColor(col);
+    public Bishop(Color col, Coordinate c, ChessBoard board) {
+        setCoordinate(c);
+        setColor(col);
+        setBoard(board);
     }
 
     @Override
-    public Piece deepCopy() {
-        return new Bishop(this.getColor(), new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY()));
+    public Piece deepCopy(ChessBoard b) {
+        return new Bishop(this.getColor(), new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY()), b);
     }
 
     static void checkAdd(Piece self, int xDir, int yDir, ArrayList<Square> moves, ChessBoard board) {

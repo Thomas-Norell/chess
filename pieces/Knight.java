@@ -11,9 +11,10 @@ public class Knight extends Piece {
 
 
     //TODO: En Passant
-    public Knight(Color col, Coordinate c) {
-        this.setCoordinate(c);
-        this.setColor(col);
+    public Knight(Color col, Coordinate c, ChessBoard b) {
+        setCoordinate(c);
+        setColor(col);
+        setBoard(b);
         if (col.isWhite()) {
             direction = 1;
         }
@@ -23,8 +24,8 @@ public class Knight extends Piece {
     }
 
     @Override
-    public Piece deepCopy() {
-        return new Knight(this.getColor(), new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY()));
+    public Piece deepCopy(ChessBoard b) {
+        return new Knight(this.getColor(), new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY()), b);
     }
 
     private void verifyAdd(ArrayList<Square> moves, Square s) {

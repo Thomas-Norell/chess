@@ -9,14 +9,15 @@ import board.Color;
 public class Rook extends Piece {
 
 
-    public Rook(Color col, Coordinate c) {
-        this.setCoordinate(c);
-        this.setColor(col);
+    public Rook(Color col, Coordinate c, ChessBoard b) {
+        setCoordinate(c);
+        setColor(col);
+        setBoard(b);
     }
 
     @Override
-    public Piece deepCopy() {
-        return new Rook(this.getColor(), new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY()));
+    public Piece deepCopy(ChessBoard b) {
+        return new Rook(this.getColor(), new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY()), b);
     }
 
     static void checkAdd(Piece self, int direction, ArrayList<Square> moves, ChessBoard board) {

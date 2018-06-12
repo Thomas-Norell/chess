@@ -21,40 +21,40 @@ public class ChessBoard {
             }
         }
         for (int x = 0; x < 8; x++) { //Fills white pawns
-            Pawn thisPawn = new Pawn(new White(), new Coordinate(x, 1));
+            Pawn thisPawn = new Pawn(new White(), new Coordinate(x, 1), this);
             board[1 * 8 + x].setOccupant(thisPawn);
             whitePieces.add(thisPawn);
         }
 
-        Rook thisRook = new Rook(new White(), new Coordinate(0,0));
+        Rook thisRook = new Rook(new White(), new Coordinate(0,0), this);
         board[0 * 8 + 0].setOccupant(thisRook);
         whitePieces.add(thisRook);
 
-        thisRook = new Rook(new White(), new Coordinate(7,0));
+        thisRook = new Rook(new White(), new Coordinate(7,0), this);
         board[0 * 8 + 7].setOccupant(thisRook);
         whitePieces.add(thisRook);
 
-        Knight thisKnight = new Knight(new White(), new Coordinate(1,0));
+        Knight thisKnight = new Knight(new White(), new Coordinate(1,0), this);
         board[0 * 8 + 1].setOccupant(thisKnight);
         whitePieces.add(thisKnight);
 
-        thisKnight = new Knight(new White(), new Coordinate(6,0));
+        thisKnight = new Knight(new White(), new Coordinate(6,0), this);
         board[0 * 8 + 6].setOccupant(thisKnight);
         whitePieces.add(thisKnight);
 
-        Bishop thisBishop = new Bishop(new White(), new Coordinate(2,0));
+        Bishop thisBishop = new Bishop(new White(), new Coordinate(2,0), this);
         board[0 * 8 + 2].setOccupant(thisBishop);
         whitePieces.add(thisBishop);
 
-        thisBishop = new Bishop(new White(), new Coordinate(5,0));
+        thisBishop = new Bishop(new White(), new Coordinate(5,0), this);
         board[0 * 8 + 5].setOccupant(thisBishop);
         whitePieces.add(thisBishop);
 
-        Queen thisQueen = new Queen(new White(), new Coordinate(3, 0));
+        Queen thisQueen = new Queen(new White(), new Coordinate(3, 0), this);
         board[0 * 8 + 3].setOccupant(thisQueen);
         whitePieces.add(thisQueen);
 
-        King thisKing = new King(new White(), new Coordinate(4, 0));
+        King thisKing = new King(new White(), new Coordinate(4, 0), this);
         board[0 * 8 + 4].setOccupant(thisKing);
         whitePieces.add(thisKing);
 
@@ -62,39 +62,39 @@ public class ChessBoard {
 
 
         for (int x = 0; x < 8; x++) { //Fills black pawns
-            Pawn thisPawn = new Pawn(new Black(), new Coordinate(x, 6));
+            Pawn thisPawn = new Pawn(new Black(), new Coordinate(x, 6), this);
             board[6 * 8 + x].setOccupant(thisPawn);
         }
 
-        thisRook = new Rook(new Black(), new Coordinate(0,7));
+        thisRook = new Rook(new Black(), new Coordinate(0,7), this);
         board[7 * 8 + 0].setOccupant(thisRook);
         blackPieces.add(thisRook);
 
-        thisRook = new Rook(new Black(), new Coordinate(7,7));
+        thisRook = new Rook(new Black(), new Coordinate(7,7), this);
         board[7 * 8 + 7].setOccupant(thisRook);
         blackPieces.add(thisRook);
 
-        thisKnight = new Knight(new Black(), new Coordinate(1,7));
+        thisKnight = new Knight(new Black(), new Coordinate(1,7), this);
         board[7 * 8 + 1].setOccupant(thisKnight);
         blackPieces.add(thisKnight);
 
-        thisKnight = new Knight(new Black(), new Coordinate(6,7));
+        thisKnight = new Knight(new Black(), new Coordinate(6,7), this);
         board[7 * 8 + 6].setOccupant(thisKnight);
         blackPieces.add(thisKnight);
 
-        thisBishop = new Bishop(new Black(), new Coordinate(2,7));
+        thisBishop = new Bishop(new Black(), new Coordinate(2,7), this);
         board[7 * 8 + 2].setOccupant(thisBishop);
         blackPieces.add(thisBishop);
 
-        thisBishop = new Bishop(new Black(), new Coordinate(5,7));
+        thisBishop = new Bishop(new Black(), new Coordinate(5,7), this);
         board[7 * 8 + 5].setOccupant(thisBishop);
         blackPieces.add(thisBishop);
 
-        thisQueen = new Queen(new Black(), new Coordinate(3, 7));
+        thisQueen = new Queen(new Black(), new Coordinate(3, 7), this);
         board[7 * 8 + 3].setOccupant(thisQueen);
         blackPieces.add(thisQueen);
 
-        thisKing = new King(new Black(), new Coordinate(4, 7));
+        thisKing = new King(new Black(), new Coordinate(4, 7), this);
         board[7 * 8 + 4].setOccupant(thisKing);
         blackPieces.add(thisKing);
     }
@@ -108,13 +108,13 @@ public class ChessBoard {
         whitePieces = new ArrayList();
         blackPieces = new ArrayList();
         for (Piece p : b.whitePieces) {
-            Piece copy = p.deepCopy();
+            Piece copy = p.deepCopy(this);
             whitePieces.add(copy);
             board[8*p.getCoordinate().getY() + p.getCoordinate().getX()].setOccupant(copy);
 
         }
         for (Piece p : b.blackPieces) {
-            Piece copy = p.deepCopy();
+            Piece copy = p.deepCopy(this);
             blackPieces.add(copy);
             board[8*p.getCoordinate().getY() + p.getCoordinate().getX()].setOccupant(copy);
         }

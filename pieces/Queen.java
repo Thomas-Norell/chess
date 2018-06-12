@@ -9,14 +9,15 @@ import board.Color;
 public class Queen extends Piece {
 
 
-    public Queen(Color col, Coordinate c) {
-        this.setCoordinate(c);
-        this.setColor(col);
+    public Queen(Color col, Coordinate c, ChessBoard b) {
+        setCoordinate(c);
+        setColor(col);
+        setBoard(b);
     }
 
     @Override
-    public Piece deepCopy() {
-        return new Queen(this.getColor(), new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY()));
+    public Piece deepCopy(ChessBoard b) {
+        return new Queen(this.getColor(), new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY()), b);
     }
 
 

@@ -12,9 +12,10 @@ public class Pawn extends Piece {
 
 
     //TODO: En Passant
-    public Pawn(Color col, Coordinate c) {
-        this.setCoordinate(c);
-        this.setColor(col);
+    public Pawn(Color col, Coordinate c, ChessBoard b) {
+        setCoordinate(c);
+        setColor(col);
+        setBoard(b);
         if (col.isWhite()) {
             direction = 1;
         }
@@ -24,8 +25,8 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public Piece deepCopy() {
-        return new Pawn(this.getColor(), new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY()));
+    public Piece deepCopy(ChessBoard b) {
+        return new Pawn(this.getColor(), new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY()), b);
     }
 
     @Override

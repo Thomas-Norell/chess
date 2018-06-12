@@ -11,17 +11,26 @@ public abstract class Piece {
     private Coordinate coord;
     private Color color;
     private boolean alive = true;
+    private ChessBoard board;
 
-    public Coordinate getCoordinate() {
+    protected final void setBoard(ChessBoard b) {
+        board = b;
+    }
+
+    public final ChessBoard getBoard() {
+        return board;
+    }
+
+    public final Coordinate getCoordinate() {
         return this.coord;
     }
-    public void setCoordinate(Coordinate c) {
+    public final void setCoordinate(Coordinate c) {
         this.coord = c;
     }
-    protected Color getColor() {
+    public final Color getColor() {
         return this.color;
     }
-    protected void setColor(Color c) {
+    public final void setColor(Color c) {
         this.color = c;
     }
     public boolean isAlive() {
@@ -30,7 +39,17 @@ public abstract class Piece {
     public void kill() {
         alive = false;
     }
-    public abstract Piece deepCopy();
+    public abstract Piece deepCopy(ChessBoard newBoard);
 
     public abstract ArrayList<Square> validMoves(ChessBoard board);
+
+    public final void move(Square dest, ChessBoard board) {
+        Square source = board.getSquare(this.getCoordinate());
+        this.setCoordinate(dest.getCoord());
+        source.setOccupant(null);
+        if (dest.isOccupied()) {
+            dest.Occupant().kill();
+        }
+
+    }
 }
