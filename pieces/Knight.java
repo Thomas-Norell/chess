@@ -59,7 +59,19 @@ public class Knight extends Piece {
         for (Square s : potentials) {
             verifyAdd(moves, s);
         }
-
+        ArrayList<Square> badMoves = new ArrayList<>();
+        for (Square s : moves) {
+            ChessBoard sim = new ChessBoard(board);
+            Square aMove = sim.getSquare(s.getCoord());
+            Piece aPiece = sim.getSquare(this.getCoordinate()).Occupant();
+            aPiece.move(aMove);
+            if (sim.isKingChecked(this.getColor())) {
+                badMoves.add(s);
+            }
+        }
+        for (Square s : badMoves) {
+            moves.remove(s);
+        }
         return moves;
     }
     public Image image() {

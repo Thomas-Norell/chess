@@ -1,4 +1,7 @@
 package board;
+
+import java.util.Objects;
+
 public class Coordinate {
     private int x;
     private int y;
@@ -20,5 +23,8 @@ public class Coordinate {
     }
     public void setY(int y) {
         this.y = y;
+    }
+    public boolean equals(Coordinate other) {
+        return this.x == other.x && this.y == other.y;
     }
 }

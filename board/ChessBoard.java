@@ -4,6 +4,7 @@ import pieces.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.ExecutionException;
 
 public class ChessBoard {
     private Square[] board = new Square[64];
@@ -14,7 +15,7 @@ public class ChessBoard {
         blackPieces = new ArrayList();
         int mode;
         for (int i = 0; i < 64; i++) {
-            if ((i / 8) % 2 == 1) {
+            if ((i / 8) % 2 == 0) {
                 mode = 0;
             }
             else {
@@ -74,6 +75,7 @@ public class ChessBoard {
         for (int x = 0; x < 8; x++) { //Fills black pawns
             Pawn thisPawn = new Pawn(new Black(), new Coordinate(x, 6), this);
             board[6 * 8 + x].setOccupant(thisPawn);
+            blackPieces.add(thisPawn);
         }
 
         thisRook = new Rook(new Black(), new Coordinate(0,7), this);
@@ -130,9 +132,21 @@ public class ChessBoard {
         }
 
     }
-    public boolean isKingChecked(ChessBoard board) {
-        //TODO: IMPLEMENT
-        return false;
+    public boolean isKingChecked(Color player) {
+        ArrayList<Piece> pieces;
+        if (player.isWhite()) {
+            pieces = this.whitePieces;
+
+        }
+        else {
+            pieces = this.blackPieces;
+        }
+        for (Piece p : pieces) {
+            if (p instanceof King) {
+                return ((King) p).isChecked();
+            }
+        }
+        throw new ArrayIndexOutOfBoundsException("I didn't find a king in your pieces, something is wrong!");
     }
 
     public Square getSquare(Coordinate c) {

@@ -46,7 +46,7 @@ public class Visualizer extends Application{
                 square.setFitHeight(yDim / 8);
                 square.setFitWidth(xDim / 8);
                 GridPane.setRowIndex(square, 7 - y);
-                GridPane.setColumnIndex(square, 7 - x);
+                GridPane.setColumnIndex(square, x);
                 gridPane.getChildren().add(square);
                 if (board.getSquare(new Coordinate(x, y)).isOccupied()) {
                     ImageView piece = new ImageView();
@@ -54,7 +54,7 @@ public class Visualizer extends Application{
                     piece.setFitHeight(yDim / 8);
                     piece.setFitWidth(xDim / 8);
                     GridPane.setRowIndex(piece, 7 - y);
-                    GridPane.setColumnIndex(piece, 7 - x);
+                    GridPane.setColumnIndex(piece, x);
                     gridPane.getChildren().add(piece);
                 }
             }
@@ -77,9 +77,9 @@ public class Visualizer extends Application{
                     if( node instanceof ImageView) {
                         if( node.getBoundsInParent().contains(e.getSceneX(),  e.getSceneY())) {
                             System.out.println( "Node: " + node + " at " + GridPane.getRowIndex( node) + "/" + GridPane.getColumnIndex( node));
-                            Square clickedSquare = board.getSquare(new Coordinate(7 - GridPane.getColumnIndex( node), 7 - GridPane.getRowIndex( node)));
+                            Square clickedSquare = board.getSquare(new Coordinate(GridPane.getColumnIndex( node), 7 - GridPane.getRowIndex( node)));
                             System.out.print(clickedSquare.Occupant());
-                            controller.addTarget(clickedSquare);
+                            controller.addTarget(clickedSquare, gridPane);
 
                         }
                     }

@@ -59,6 +59,19 @@ public class Rook extends Piece {
         ArrayList<Square> moves = new ArrayList();
         checkAdd(this, 1, moves, board);
         checkAdd(this, -1, moves, board);
+        ArrayList<Square> badMoves = new ArrayList<>();
+        for (Square s : moves) {
+            ChessBoard sim = new ChessBoard(board);
+            Square aMove = sim.getSquare(s.getCoord());
+            Piece aPiece = sim.getSquare(this.getCoordinate()).Occupant();
+            aPiece.move(aMove);
+            if (sim.isKingChecked(this.getColor())) {
+                badMoves.add(s);
+            }
+        }
+        for (Square s : badMoves) {
+            moves.remove(s);
+        }
         return moves;
     }
 
