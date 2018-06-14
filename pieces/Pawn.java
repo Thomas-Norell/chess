@@ -13,6 +13,11 @@ public class Pawn extends Piece {
     final int direction;
     boolean hasMoved = false;
 
+    @Override
+    public double getValue() {
+        return 1;
+    }
+
 
     //TODO: En Passant
     public Pawn(Color col, Coordinate c, ChessBoard b) {
@@ -53,7 +58,6 @@ public class Pawn extends Piece {
             if (!frontFront.isOccupied()) {
                 moves.add(frontFront);
             }
-            hasMoved = true;
         }
         ArrayList<Square> badMoves = new ArrayList<>();
         for (Square s : moves) {

@@ -59,8 +59,13 @@ public abstract class Piece {
             dest.Occupant().kill();
         }
         dest.setOccupant(this);
+        if (this instanceof Pawn) {
+            ((Pawn) this).hasMoved = true;
+        }
 
     }
+
+    public abstract double getValue();
 
     public abstract Image image();
 }

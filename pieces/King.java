@@ -11,6 +11,11 @@ import javafx.scene.image.Image;
 
 public class King extends Piece {
 
+    @Override
+    public double getValue() {
+        return 1;
+    }
+
 
     public King(Color col, Coordinate c, ChessBoard b) {
         setCoordinate(c);

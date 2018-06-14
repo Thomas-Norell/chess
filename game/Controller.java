@@ -1,26 +1,20 @@
 package game;
 
 import board.*;
-import engine.Thinker;
+import engine.MonteCarloTree;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import pieces.Piece;
 
 public class Controller {
+    private final int strength = 10000000;
     ChessBoard board;
     Color playerColor;
-    Color computerColor;
     Piece source;
     Square destination;
     Stage stage;
     public Controller(Color color, Stage stage) {
         playerColor = color;
-        if (playerColor.isWhite()) {
-            computerColor = new Black();
-        }
-        else {
-            computerColor = new White();
-        }
         board = new ChessBoard();
         this.stage = stage;
         Visualizer.renderBoard(stage, board, this);
@@ -42,13 +36,9 @@ public class Controller {
                 //TODO: check if king is in check
                 source.move(destination);
                 //TODO: Burning down and rebuilding javaFX everytime is slow and ugly
-                Thinker.makeMove(computerColor, board);
-                if (playerColor.isWhite()) {
-                    playerColor = new Black();
-                }
-                else {
-                    playerColor = new White();
-                }
+                System.out.println("THINKIN REAL HARD MAN");
+                Move m = new MonteCarloTree(board, playerColor.opposite(), strength).bestMove();
+                m.source.move(m.destination);
                 Visualizer.renderBoard(stage, board, this);
             }
             destination = null;

@@ -76,9 +76,9 @@ public class Visualizer extends Application{
 
                     if( node instanceof ImageView) {
                         if( node.getBoundsInParent().contains(e.getSceneX(),  e.getSceneY())) {
-                            System.out.println( "Node: " + node + " at " + GridPane.getRowIndex( node) + "/" + GridPane.getColumnIndex( node));
+                            //System.out.println( "Node: " + node + " at " + GridPane.getRowIndex( node) + "/" + GridPane.getColumnIndex( node));
                             Square clickedSquare = board.getSquare(new Coordinate(GridPane.getColumnIndex( node), 7 - GridPane.getRowIndex( node)));
-                            System.out.print(clickedSquare.Occupant());
+                            //System.out.print(clickedSquare.Occupant());
                             controller.addTarget(clickedSquare, gridPane);
 
                         }

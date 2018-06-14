@@ -3,8 +3,6 @@ package board;
 import pieces.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.concurrent.ExecutionException;
 
 public class ChessBoard {
     private Square[] board = new Square[64];
@@ -169,6 +167,13 @@ public class ChessBoard {
     }
 
     public ArrayList<Piece> getBlackPieces() {
+        return blackPieces;
+    }
+
+    public ArrayList<Piece> pieces(Color player) {
+        if (player.isWhite()) {
+            return whitePieces;
+        }
         return blackPieces;
     }
 

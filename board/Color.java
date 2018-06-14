@@ -5,6 +5,12 @@ public interface Color {
     default boolean sameColor(Color other) {
         return this.isWhite() == other.isWhite();
     }
+    default Color opposite() {
+        if (this.isWhite()) {
+            return new Black();
+        }
+        return new White();
+    }
 
 
 }

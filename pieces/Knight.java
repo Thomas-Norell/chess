@@ -10,6 +10,11 @@ import javafx.scene.image.Image;
 public class Knight extends Piece {
     final int direction;
 
+    @Override
+    public double getValue() {
+        return 3;
+    }
+
 
     //TODO: En Passant
     public Knight(Color col, Coordinate c, ChessBoard b) {

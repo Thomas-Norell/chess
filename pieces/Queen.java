@@ -17,6 +17,11 @@ public class Queen extends Piece {
     }
 
     @Override
+    public double getValue() {
+        return 10;
+    }
+
+    @Override
     public Piece deepCopy(ChessBoard b) {
         return new Queen(this.getColor(), new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY()), b);
     }

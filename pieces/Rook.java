@@ -17,6 +17,11 @@ public class Rook extends Piece {
     }
 
     @Override
+    public double getValue() {
+        return 5;
+    }
+
+    @Override
     public Piece deepCopy(ChessBoard b) {
         return new Rook(this.getColor(), new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY()), b);
     }

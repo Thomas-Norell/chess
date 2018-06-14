@@ -9,6 +9,11 @@ import javafx.scene.image.Image;
 
 public class Bishop extends Piece {
 
+    @Override
+    public double getValue() {
+        return 3.1;
+    }
+
 
     public Bishop(Color col, Coordinate c, ChessBoard board) {
         setCoordinate(c);
