@@ -7,17 +7,25 @@ import javafx.stage.Stage;
 import pieces.Piece;
 
 public class Controller {
-    private final int strength = 10000000;
+    private final int strength = 10000;
     ChessBoard board;
     Color playerColor;
     Piece source;
     Square destination;
     Stage stage;
-    public Controller(Color color, Stage stage) {
+    Visualizer visual;
+    public Controller(Color color, Visualizer visual) {
         playerColor = color;
         board = new ChessBoard();
         this.stage = stage;
-        Visualizer.renderBoard(stage, board, this);
+
+        if (!playerColor.isWhite()) {
+            Move m = new MonteCarloTree(board, playerColor.opposite(), strength).bestMove();
+            m.source.move(m.destination);
+        }
+        this.visual = visual;
+        visual.renderBoard(board, this);
+
     }
 
     public void addTarget(Square target, GridPane gridPane) {
@@ -36,10 +44,9 @@ public class Controller {
                 //TODO: check if king is in check
                 source.move(destination);
                 //TODO: Burning down and rebuilding javaFX everytime is slow and ugly
-                System.out.println("THINKIN REAL HARD MAN");
                 Move m = new MonteCarloTree(board, playerColor.opposite(), strength).bestMove();
                 m.source.move(m.destination);
-                Visualizer.renderBoard(stage, board, this);
+                visual.renderBoard(board, this);
             }
             destination = null;
 

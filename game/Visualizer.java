@@ -19,8 +19,10 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
+import board.Black;
 
 public class Visualizer extends Application{
+    Stage stage;
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -28,12 +30,13 @@ public class Visualizer extends Application{
 
     @Override
     public void start(Stage stage) {
-        Controller controller = new Controller(new White(), stage);
+        this.stage = stage;
+        new Controller(new White(), this);
     }
 
 
 
-    public static void renderBoard(Stage stage, ChessBoard board, Controller controller) {
+    public void renderBoard(ChessBoard board, Controller controller) {
         int xDim = 600;
         int yDim = 600;
 

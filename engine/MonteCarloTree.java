@@ -3,12 +3,15 @@ package engine;
 import board.ChessBoard;
 import board.Color;
 import board.Move;
+import game.Controller;
+import game.Visualizer;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MonteCarloTree {
     private int strength;
-    private final double c = 1.414;
+    private final double c = 10;
     private final int depthLimit = 3;
     private ArrayList<Node> fringe;
     private Node root;
@@ -21,7 +24,7 @@ public class MonteCarloTree {
         if (n.movesLeft.size() == 0) {
             return;
         }
-        Move move = n.movesLeft.get(0);
+        Move move = n.movesLeft.get(new Random().nextInt(n.movesLeft.size()));
         n.movesLeft.remove(move);
         ChessBoard newGame = new ChessBoard(n.game);
         newGame.getSquare(move.source.getCoordinate()).Occupant().move(newGame.getSquare(move.destination.getCoord()));
@@ -29,14 +32,16 @@ public class MonteCarloTree {
         n.addChild(child);
     }
     private void calcVals(Node n) {
-        if (n.numDescendents == 0) {
+        if (n.movesLeft.size() == 0) {
             n.decisionVal = 0;
         }
-        else {
-            n.decisionVal = n.numWins/n.numDescendents + c * Math.sqrt(Math.log(root.numDescendents)/n.numDescendents);
+        else if (n.numDescendents == 0) {
+            n.decisionVal = n.wins + c * Math.sqrt(Math.log(root.numDescendents));
         }
 
-
+        else {
+            n.decisionVal = n.wins/n.numDescendents + c * Math.sqrt(Math.log(root.numDescendents)/n.numDescendents);
+        }
         if (n.isLeaf()) {
             return;
         }
@@ -46,6 +51,7 @@ public class MonteCarloTree {
     }
 
     private Node getBestNode(Node n, Node best) {
+
         if (n.isLeaf()) {
             if (n.decisionVal > best.decisionVal) {
                 return n;
@@ -63,10 +69,9 @@ public class MonteCarloTree {
         for (int i = 0; i < strength; i++) {
             deepen(whichNodeToDeepen());
         }
-        double best = 0;
         Node bestMove = root.children.get(0);
         for (Node n : root.children) {
-            if (n.weight > bestMove.weight) {
+            if (n.numDescendents != 0 && n.wins/n.numDescendents > bestMove.wins / bestMove.numDescendents) {
                 bestMove = n;
             }
         }
@@ -85,45 +90,40 @@ public class MonteCarloTree {
         ChessBoard game;
         ArrayList<Node> children;
         Node parent;
-        double weight;
+        int wins;
         Color player;
         int numDescendents;
         Move move;
         ArrayList<Move> movesLeft;
-        int numWins;
         Node(int depth, ChessBoard game, Color player, Node parent, Move m) {
             this.game = game;
             this.parent = parent;
             this.player = player;
             children = new ArrayList();
-            weight = Heuristics.value(game, root().player);
+            if (Heuristics.winner(game) == player) {
+                wins = 1;
+            }
+            else {
+                wins = 0;
+            }
             movesLeft = Heuristics.allMoves(game, player);
-            backPropogate();
+            backPropogate(this);
             numDescendents = 0;
             this.depth = depth;
             move = m;
 
         }
-        Node root() {
-            if (this.isRoot()) {
-                return this;
-            }
-            return this.parent;
-        }
         void addChild(Node child) {
             children.add(child);
         }
-        void backPropogate() {
+        void backPropogate(Node sourceNode) {
             if (!this.isRoot()) {
                 parent.numDescendents += 1;
-                parent.weight += this.weight;
-                parent.backPropogate();
-                if (weight > parent.weight) { //We 'won'
-                    parent.numWins += 1;
+                if (sourceNode.player.sameColor(parent.player)) {
+                    parent.wins += 1;
                 }
+                parent.backPropogate(sourceNode);
             }
-
-
         }
         boolean isRoot() {
             return parent == null;

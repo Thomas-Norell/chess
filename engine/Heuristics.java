@@ -1,10 +1,7 @@
 package engine;
 
-import board.ChessBoard;
-import board.Move;
-import board.Square;
+import board.*;
 import pieces.Piece;
-import board.Color;
 
 import java.util.ArrayList;
 
@@ -55,12 +52,21 @@ public class Heuristics {
         worth += squaresAttacking(board, player).size() * 0.05; //every square attacked is 0.1
 
         for (Piece p : piecesAttacking(board, player)) { //Increase worth for attacking pieces
-            worth += 0.2 * p.getValue();
+            worth += 0.1 * p.getValue();
         }
         for (Piece p : piecesAttacking(board, player.opposite())) { //Decrease worth if piece is under attack
             worth -= 0.2 * p.getValue();
         }
 
         return worth;
+    }
+
+    public static Color winner(ChessBoard board) {
+        double val = value(board, new White());
+        double valBlack = value(board, new Black());
+        if (value(board, new White()) > value(board, new Black())) {
+            return new White();
+        }
+        return new Black();
     }
 }
