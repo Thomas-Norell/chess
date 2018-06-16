@@ -71,11 +71,31 @@ public class main extends Application{
         Visualizer.renderBoard(b);
 
     }
+
+    @Test()
+    public static void testOpen2() {
+        ChessBoard b = new ChessBoard();
+        Pawn whiteQueenPawn = (Pawn) b.getSquare(new Coordinate(3, 1)).Occupant();
+        whiteQueenPawn.move(b.getSquare(new Coordinate(3, 3)));
+
+        Knight blackKnight = (Knight) b.getSquare(new Coordinate(1, 7)).Occupant();
+        blackKnight.move(b.getSquare(new Coordinate(2, 5)));
+
+        Knight whiteKnight = (Knight) b.getSquare(new Coordinate(6, 0)).Occupant();
+        whiteKnight.move(b.getSquare(new Coordinate(5, 2)));
+
+        MonteCarloTree decision = new MonteCarloTree(b, new Black(), 500);
+        Visualizer.renderBoard(b);
+        Move m = decision.bestMove();
+        m.makeMove();
+        Visualizer.renderBoard(b);
+
+    }
     public static void main(String[] args) {
         Application.launch(args);
     }
 
     public void start(Stage stage) {
-        testWeird();
+        testOpen2();
     }
 }

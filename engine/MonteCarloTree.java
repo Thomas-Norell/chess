@@ -53,15 +53,10 @@ public class MonteCarloTree {
         }
     }
 
-    private Node getBestNode(Node n, Node best) {
-
-        if (n.isLeaf()) {
-            if (n.decisionVal > best.decisionVal) {
-                return n;
-            }
-        }
+    private Node getBestNode(Node n) {
+        Node best = n;
         for (Node c : n.children) {
-            Node potential = getBestNode(c, best);
+            Node potential = getBestNode(c);
             if (potential.decisionVal > best.decisionVal) {
                 best = potential;
             }
@@ -86,7 +81,7 @@ public class MonteCarloTree {
 
     private Node whichNodeToDeepen() {
         calcVals(root);
-        return getBestNode(root, root);
+        return getBestNode(root);
     }
     private class Node {
         double decisionVal;
@@ -104,12 +99,6 @@ public class MonteCarloTree {
             this.parent = parent;
             this.player = player;
             children = new ArrayList();
-            /*if (Heuristics.winner(game) == player) {
-                wins = 1;
-            }
-            else {
-                wins = 0;
-            }*/
             wins = Heuristics.value(game, player);
             movesLeft = Heuristics.allMoves(game, player);
             backPropogate(this);
