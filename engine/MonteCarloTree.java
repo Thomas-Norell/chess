@@ -37,22 +37,13 @@ public class MonteCarloTree {
             n.decisionVal = 0;
         }
         else if (n.numDescendents == 0) {
-            if (n.player.sameColor(root.player)) {
-                n.decisionVal = n.wins + c * Math.sqrt(Math.log(root.numDescendents));
-            }
-            else {
-                n.decisionVal = -n.wins + c * Math.sqrt(Math.log(root.numDescendents));
-            }
+            n.decisionVal = Math.abs(n.wins) + c * Math.sqrt(Math.log(root.numDescendents));
 
         }
 
         else {
-            if (n.player.sameColor(root.player)) {
-                n.decisionVal = n.wins / n.numDescendents + c * Math.sqrt(Math.log(root.numDescendents) / n.numDescendents);
-            }
-            else {
-                n.decisionVal = -n.wins / n.numDescendents + c * Math.sqrt(Math.log(root.numDescendents) / n.numDescendents);
-            }
+            n.decisionVal = Math.abs(n.wins) / n.numDescendents + c * Math.sqrt(Math.log(root.numDescendents) / n.numDescendents);
+
         }
         if (n.isLeaf()) {
             return;

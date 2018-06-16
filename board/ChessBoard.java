@@ -1,5 +1,6 @@
 package board;
 
+import game.Visualizer;
 import pieces.*;
 
 import java.util.ArrayList;
@@ -144,6 +145,7 @@ public class ChessBoard {
                 return ((King) p).isChecked();
             }
         }
+        Visualizer.renderBoard(this);
         throw new ArrayIndexOutOfBoundsException("I didn't find a king in your pieces, something is wrong!");
     }
 

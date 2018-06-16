@@ -143,7 +143,7 @@ public class King extends Piece {
 
         ArrayList<Coordinate> bads = new ArrayList();
         for (Coordinate c : moves) {
-            if (c.getX() > 7 || c.getX() <=0 || c.getY() >7 || c.getY() <= 0) {
+            if (c.getX() > 7 || c.getX() < 0 || c.getY() > 7 || c.getY() < 0) {
                 bads.add(c);
             }
         }
