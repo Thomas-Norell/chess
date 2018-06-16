@@ -114,7 +114,7 @@ public class King extends Piece {
                 if (s.Occupant().getColor().sameColor(this.getColor())) {
                     break;
                 }
-                if (s.Occupant() instanceof Rook || s.Occupant() instanceof Queen) {
+                if (s.Occupant() instanceof Bishop || s.Occupant() instanceof Queen) {
                     return true;
                 }
 
