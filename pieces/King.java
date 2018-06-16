@@ -129,15 +129,52 @@ public class King extends Piece {
         return false;
     }
 
-    public boolean isChecked() {
-        if (checkStraightHelper(1)) {
-            return true;
+    private boolean checkKnight() { //Also checks pawn
+        ArrayList<Coordinate> moves = new ArrayList();
+        moves.add(new Coordinate(this.getCoordinate().getX() - 2, this.getCoordinate().getY() - 1));
+        moves.add(new Coordinate(this.getCoordinate().getX() - 2, this.getCoordinate().getY() + 1));
+        moves.add(new Coordinate(this.getCoordinate().getX() + 2, this.getCoordinate().getY() - 1));
+        moves.add(new Coordinate(this.getCoordinate().getX() + 2, this.getCoordinate().getY() + 1));
+
+        moves.add(new Coordinate(this.getCoordinate().getX() - 1, this.getCoordinate().getY() - 2));
+        moves.add(new Coordinate(this.getCoordinate().getX() - 1, this.getCoordinate().getY() + 2));
+        moves.add(new Coordinate(this.getCoordinate().getX() + 1, this.getCoordinate().getY() - 2));
+        moves.add(new Coordinate(this.getCoordinate().getX() + 1, this.getCoordinate().getY() + 2));
+
+        if (getColor().isWhite()) {
+            moves.add(new Coordinate(this.getCoordinate().getX() + 1, this.getCoordinate().getY() + 1));
+            moves.add(new Coordinate(this.getCoordinate().getX() - 1, this.getCoordinate().getY() + 1));
+
+        }
+        else {
+            moves.add(new Coordinate(this.getCoordinate().getX() + 1, this.getCoordinate().getY() - 1));
+            moves.add(new Coordinate(this.getCoordinate().getX() - 1, this.getCoordinate().getY() - 1));
         }
 
-        if (checkDiagHelper(1, 1)) {
-            return true;
+
+        ArrayList<Coordinate> bads = new ArrayList();
+        for (Coordinate c : moves) {
+            if (c.getX() > 7 || c.getX() <=0 || c.getY() >7 || c.getY() <= 0) {
+                bads.add(c);
+            }
+        }
+        for (Coordinate c : bads) {
+            moves.remove(c);
+        }
+
+        for (Coordinate c : moves) {
+            if (getBoard().getSquare(c).isOccupied() && getBoard().getSquare(c).Occupant().getColor().sameColor(getColor()) && getBoard().getSquare(c).Occupant() instanceof Knight) {
+                return true;
+            }
         }
         return false;
+    }
+
+
+    public boolean isChecked() {
+
+        return (checkStraightHelper(1) || checkDiagHelper(1,1) || checkKnight());
+
     }
 
     public Image image() {

@@ -29,7 +29,7 @@ public class Rook extends Piece {
     static void checkAdd(Piece self, int direction, ArrayList<Square> moves, ChessBoard board) {
         int myX = self.getCoordinate().getX();
         int myY = self.getCoordinate().getY();
-        for (int i = myX + direction; i < 8 - myX && i >= 0; i += direction) {
+        for (int i = myX + direction; i < 8 & i >= 0; i += direction) {
             Square thisSquare = board.getSquare(new Coordinate(i, myY));
             if (thisSquare.isOccupied()) {
                 if (thisSquare.Occupant().getColor().sameColor(self.getColor())) { //We followed a path to a piece of the same color
@@ -42,7 +42,7 @@ public class Rook extends Piece {
             }
             moves.add(thisSquare);
         }
-        for (int i = myY + direction; i < 8 - myX && i >= 0; i += direction) {
+        for (int i = myY + direction; i < 8 && i >= 0; i += direction) {
             Square thisSquare = board.getSquare(new Coordinate(myX, i));
             if (thisSquare.isOccupied()) {
                 if (thisSquare.Occupant().getColor().sameColor(self.getColor())) { //We followed a path to a piece of the same color
