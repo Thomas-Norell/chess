@@ -13,7 +13,7 @@ import java.util.Random;
 public class MonteCarloTree {
     private int strength;
     private final double c = 1.4;
-    private final int depthLimit = 2;
+    private final int depthLimit = 10;
     private ArrayList<Node> fringe;
     private Node root;
     public MonteCarloTree(ChessBoard board, Color player, int strength) {
@@ -23,7 +23,7 @@ public class MonteCarloTree {
     }
     private void deepen(Node n) {
         if (n.movesLeft.size() == 0) {
-            return;
+            throw new Error("Either I ran out of depth or something is broken!");
         }
         Move move = n.movesLeft.get(new Random().nextInt(n.movesLeft.size()));
         n.movesLeft.remove(move);

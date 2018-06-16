@@ -55,7 +55,7 @@ public class Pawn extends Piece {
         }
         if (!hasMoved) {
             Square frontFront = board.getSquare(new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY() + direction * 2));
-            if (!frontFront.isOccupied() && frontFront != null && frontFront.isValid()) {
+            if (!front.isOccupied() && !frontFront.isOccupied() && frontFront != null && frontFront.isValid()) {
                 moves.add(frontFront);
             }
         }
