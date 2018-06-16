@@ -136,6 +136,9 @@ public class MonteCarloTree {
                 if (sourceNode.player.sameColor(parent.player)) {
                     parent.wins += sourceNode.wins;
                 }
+                else {
+                    parent.wins -= sourceNode.wins;
+                }
                 parent.backPropogate(sourceNode);
             }
         }

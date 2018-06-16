@@ -75,12 +75,12 @@ public class unitTests {
         Pawn blackKingPawn = (Pawn) b.getSquare(new Coordinate(6, 6)).Occupant();
         blackKingPawn.move(b.getSquare(new Coordinate(6, 5)));
         Queen whiteQueen = (Queen) b.getSquare(new Coordinate(3,0)).Occupant();
-        whiteQueen.move(b.getSquare(new Coordinate(7, 5)));
+        whiteQueen.move(b.getSquare(new Coordinate(7, 4)));
         MonteCarloTree decision = new MonteCarloTree(b, new Black(), 1000);
-        Visualizer.renderBoard(b);
         assertEquals(decision.bestMove().source, blackKingPawn);
 
     }
+
     public static void main(String[] args) {
         Application.launch(args);
     }
