@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5619fa2-72fe-4b54-9fce-cf909a63c386" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/engine/Heuristics.java" afterPath="$PROJECT_DIR$/engine/Heuristics.java" />
       <change beforePath="$PROJECT_DIR$/engine/MonteCarloTree.java" afterPath="$PROJECT_DIR$/engine/MonteCarloTree.java" />
+      <change beforePath="$PROJECT_DIR$/game/Controller.java" afterPath="$PROJECT_DIR$/game/Controller.java" />
+      <change beforePath="$PROJECT_DIR$/main.java" afterPath="$PROJECT_DIR$/main.java" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/main.class" afterPath="$PROJECT_DIR$/out/production/chess/main.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/pieces/Pawn.class" afterPath="$PROJECT_DIR$/out/production/chess/pieces/Pawn.class" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,13 +16,28 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/chess$Visualizer.coverage" NAME="Visualizer Coverage Results" MODIFIED="1528997853553" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>game.*</FILTER>
+    </SUITE>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Rook.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pieces/Rook.java">
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="153">
+              <caret line="9" column="35" lean-forward="false" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="unitTests.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/unitTests.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1326">
+              <caret line="78" column="72" lean-forward="false" selection-start-line="78" selection-start-column="72" selection-end-line="78" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -28,18 +46,8 @@
       <file leaf-file-name="ChessBoard.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/board/ChessBoard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2941">
-              <caret line="173" column="0" lean-forward="false" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game/Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="17" lean-forward="true" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+            <state relative-caret-position="3009">
+              <caret line="177" column="31" lean-forward="false" selection-start-line="177" selection-start-column="31" selection-end-line="177" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -48,8 +56,18 @@
       <file leaf-file-name="Visualizer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game/Visualizer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1275">
-              <caret line="75" column="0" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+            <state relative-caret-position="765">
+              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Heuristics.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/engine/Heuristics.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="918">
+              <caret line="54" column="62" lean-forward="false" selection-start-line="54" selection-start-column="62" selection-end-line="54" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -58,8 +76,8 @@
       <file leaf-file-name="MonteCarloTree.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/engine/MonteCarloTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="37" column="34" lean-forward="false" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
+            <state relative-caret-position="1292">
+              <caret line="76" column="9" lean-forward="false" selection-start-line="76" selection-start-column="9" selection-end-line="76" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -68,48 +86,38 @@
       <file leaf-file-name="Piece.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pieces/Piece.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1003">
-              <caret line="59" column="9" lean-forward="true" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="9" />
+            <state relative-caret-position="1258">
+              <caret line="74" column="20" lean-forward="false" selection-start-line="74" selection-start-column="20" selection-end-line="74" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Pawn.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pieces/Pawn.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1003">
-              <caret line="59" column="13" lean-forward="false" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="King.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="King.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pieces/King.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+            <state relative-caret-position="17">
+              <caret line="124" column="33" lean-forward="false" selection-start-line="124" selection-start-column="33" selection-end-line="124" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Heuristics.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/engine/Heuristics.java">
+      <file leaf-file-name="Bishop.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pieces/Bishop.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="610">
-              <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+            <state relative-caret-position="561">
+              <caret line="33" column="16" lean-forward="false" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Color.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/board/Color.java">
+      <file leaf-file-name="main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="1972">
+              <caret line="116" column="0" lean-forward="false" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -134,6 +142,15 @@
       <find>100</find>
       <find>movesLeft</find>
       <find>numWin</find>
+      <find>numW</find>
+      <find>numWins</find>
+      <find>wins</find>
+      <find>deepe</find>
+      <find>getBest</find>
+      <find>scene</find>
+      <find>calcv</find>
+      <find>Queen</find>
+      <find>either</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -162,26 +179,26 @@
         <option value="$PROJECT_DIR$/board/Black.java" />
         <option value="$PROJECT_DIR$/board/White.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/main.java" />
         <option value="$PROJECT_DIR$/board/Square.java" />
-        <option value="$PROJECT_DIR$/unitTests.java" />
         <option value="$PROJECT_DIR$/board/Visualizer.java" />
         <option value="$PROJECT_DIR$/board/Coordinate.java" />
-        <option value="$PROJECT_DIR$/board/Move.java" />
-        <option value="$PROJECT_DIR$/pieces/Bishop.java" />
-        <option value="$PROJECT_DIR$/pieces/Knight.java" />
         <option value="$PROJECT_DIR$/pieces/Queen.java" />
-        <option value="$PROJECT_DIR$/pieces/Rook.java" />
         <option value="$PROJECT_DIR$/board/Color.java" />
         <option value="$PROJECT_DIR$/engine/Thinker.java" />
-        <option value="$PROJECT_DIR$/board/ChessBoard.java" />
-        <option value="$PROJECT_DIR$/game/Visualizer.java" />
-        <option value="$PROJECT_DIR$/pieces/Pawn.java" />
+        <option value="$PROJECT_DIR$/pieces/Bishop.java" />
+        <option value="$PROJECT_DIR$/pieces/Knight.java" />
+        <option value="$PROJECT_DIR$/board/Move.java" />
+        <option value="$PROJECT_DIR$/pieces/Rook.java" />
         <option value="$PROJECT_DIR$/pieces/Piece.java" />
+        <option value="$PROJECT_DIR$/game/Visualizer.java" />
+        <option value="$PROJECT_DIR$/unitTests.java" />
         <option value="$PROJECT_DIR$/pieces/King.java" />
+        <option value="$PROJECT_DIR$/board/ChessBoard.java" />
+        <option value="$PROJECT_DIR$/engine/Heuristics.java" />
+        <option value="$PROJECT_DIR$/pieces/Pawn.java" />
         <option value="$PROJECT_DIR$/game/Controller.java" />
         <option value="$PROJECT_DIR$/engine/MonteCarloTree.java" />
-        <option value="$PROJECT_DIR$/engine/Heuristics.java" />
+        <option value="$PROJECT_DIR$/main.java" />
       </list>
     </option>
   </component>
@@ -205,6 +222,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -236,10 +256,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="AndroidView" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -259,7 +276,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Visualizer">
+  <component name="RunManager" selected="Application.main">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
@@ -400,14 +417,17 @@
     </list>
     <recent_temporary>
       <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Application.Visualizer" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.unitTests" />
-        <item index="2" class="java.lang.String" itemvalue="Application.main" />
+        <item index="0" class="java.lang.String" itemvalue="Application.main" />
+        <item index="1" class="java.lang.String" itemvalue="Application.Visualizer" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.unitTests" />
       </list>
     </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
+  </component>
+  <component name="StructuralSearchPlugin">
+    <searchConfiguration name="user defined" created="1528996858123" text="900" recursive="true" caseInsensitive="true" type="JAVA" history="1" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -423,39 +443,40 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="unitTests - 2018.06.12 at 10h 20m 22s.xml">
+    <history-entry file="unitTests - 2018.06.15 at 22h 18m 59s.xml">
       <configuration name="unitTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="unitTests - 2018.06.12 at 10h 30m 37s.xml">
+    <history-entry file="unitTests - 2018.06.15 at 22h 21m 02s.xml">
       <configuration name="unitTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="unitTests - 2018.06.12 at 10h 40m 38s.xml">
+    <history-entry file="unitTests - 2018.06.16 at 12h 35m 33s.xml">
       <configuration name="unitTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="unitTests - 2018.06.12 at 10h 46m 17s.xml">
+    <history-entry file="unitTests - 2018.06.16 at 12h 36m 01s.xml">
       <configuration name="unitTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="unitTests - 2018.06.12 at 10h 47m 30s.xml">
+    <history-entry file="unitTests - 2018.06.16 at 12h 36m 06s.xml">
       <configuration name="unitTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="unitTests - 2018.06.12 at 10h 48m 19s.xml">
+    <history-entry file="unitTests - 2018.06.16 at 12h 36m 20s.xml">
       <configuration name="unitTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="unitTests - 2018.06.12 at 14h 01m 41s.xml">
+    <history-entry file="unitTests - 2018.06.16 at 12h 38m 23s.xml">
       <configuration name="unitTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="unitTests - 2018.06.12 at 14h 02m 11s.xml">
+    <history-entry file="unitTests - 2018.06.16 at 12h 45m 52s.xml">
       <configuration name="unitTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="unitTests - 2018.06.12 at 14h 02m 32s.xml">
+    <history-entry file="unitTests - 2018.06.16 at 12h 47m 07s.xml">
       <configuration name="unitTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="unitTests - 2018.06.13 at 15h 02m 19s.xml">
+    <history-entry file="unitTests - 2018.06.16 at 16h 21m 26s.xml">
       <configuration name="unitTests" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -464,26 +485,27 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18621524" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25876662" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Style Checker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16452074" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19742489" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2382104" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26723096" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13663845" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -493,27 +515,91 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/main.java</url>
-          <line>10</line>
+          <condition expression="p.getCoordinate().getY() &gt; 7 || p.getCoordinate().getY() &gt; 7" language="JAVA" />
+          <url>file://$PROJECT_DIR$/board/ChessBoard.java</url>
+          <line>124</line>
           <properties />
-          <option name="timeStamp" value="3" />
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/engine/MonteCarloTree.java</url>
+          <line>72</line>
+          <properties />
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/unitTests.java</url>
+          <line>79</line>
+          <properties />
+          <option name="timeStamp" value="87" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/main.java</url>
-          <line>8</line>
+          <line>114</line>
           <properties />
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pieces/Pawn.java</url>
-          <line>68</line>
-          <properties />
-          <option name="timeStamp" value="26" />
+          <option name="timeStamp" value="96" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="41" />
+      <option name="time" value="97" />
     </breakpoint-manager>
     <watches-manager />
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="breakpointCondition">
+      <expression>
+        <expression-string>i == 69</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>n.move.destination.getCoord().getX() == 3 &amp;&amp; n.move.destination.getCoord().getY() == 1</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>m != null &amp;&amp; m.destination == game.getSquare(new Coordinate(7, 4))</expression-string>
+        <language-id>JAVA</language-id>
+        <custom-info>board.Coordinate</custom-info>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>m.destination == game.getSquare(new Coordinate(7, 4))</expression-string>
+        <language-id>JAVA</language-id>
+        <custom-info>board.Coordinate</custom-info>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>m.destination == game.getSquare(new Coordinate(7, 5))</expression-string>
+        <language-id>JAVA</language-id>
+        <custom-info>board.Coordinate</custom-info>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>m.destination ==</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>this.m.</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>move.source.getCoordinate().getX()==6 &amp;&amp; move.destination.getCoord().getX() == 7</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>root.numDescendents == 30</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>i == 25</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/board/ChessBoard.java">
@@ -725,14 +811,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/board/ChessPiece.java" />
-    <entry file="file://$PROJECT_DIR$/board/Black.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/board/White.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -745,22 +823,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="6" lean-forward="false" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="42" lean-forward="false" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/Coordinate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="19" lean-forward="true" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -778,54 +840,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/board/Square.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/unitTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="30" column="47" lean-forward="false" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/Move.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pieces/Knight.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="16" lean-forward="false" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pieces/Queen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="17" lean-forward="false" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pieces/Bishop.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-443">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="14" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/engine/Thinker.java" />
     <entry file="file://$PROJECT_DIR$/board/Color.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -835,74 +849,146 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pieces/Pawn.java">
+    <entry file="file://$PROJECT_DIR$/board/Square.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="59" column="13" lean-forward="false" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
+        <state relative-caret-position="213">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/Move.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pieces/Queen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-149">
+          <caret line="20" column="17" lean-forward="false" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/Coordinate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="19" lean-forward="true" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pieces/Knight.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="75" column="9" lean-forward="true" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pieces/Rook.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        <state relative-caret-position="1207">
+          <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/Black.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pieces/Pawn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="57" column="39" lean-forward="false" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/board/ChessBoard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2941">
-          <caret line="173" column="0" lean-forward="false" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
+        <state relative-caret-position="3009">
+          <caret line="177" column="31" lean-forward="false" selection-start-line="177" selection-start-column="31" selection-end-line="177" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/game/Visualizer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="75" column="0" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pieces/King.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="17" lean-forward="true" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/MonteCarloTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="34" lean-forward="false" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pieces/Piece.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="59" column="9" lean-forward="true" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="9" />
+        <state relative-caret-position="765">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/engine/Heuristics.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+        <state relative-caret-position="918">
+          <caret line="54" column="62" lean-forward="false" selection-start-line="54" selection-start-column="62" selection-end-line="54" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pieces/Bishop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="16" lean-forward="false" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="35" lean-forward="false" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unitTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1326">
+          <caret line="78" column="72" lean-forward="false" selection-start-line="78" selection-start-column="72" selection-end-line="78" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1972">
+          <caret line="116" column="0" lean-forward="false" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/MonteCarloTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="76" column="9" lean-forward="false" selection-start-line="76" selection-start-column="9" selection-end-line="76" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pieces/Piece.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1258">
+          <caret line="74" column="20" lean-forward="false" selection-start-line="74" selection-start-column="20" selection-end-line="74" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pieces/King.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="124" column="33" lean-forward="false" selection-start-line="124" selection-start-column="33" selection-end-line="124" selection-end-column="33" />
           <folding />
         </state>
       </provider>

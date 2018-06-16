@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import pieces.Piece;
 
 public class Controller {
-    private final int strength = 40000;
+    private final int strength = 20000;
     ChessBoard board;
     Color playerColor;
     Piece source;
