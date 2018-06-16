@@ -163,7 +163,7 @@ public class King extends Piece {
         }
 
         for (Coordinate c : moves) {
-            if (getBoard().getSquare(c).isOccupied() && getBoard().getSquare(c).Occupant().getColor().sameColor(getColor()) && getBoard().getSquare(c).Occupant() instanceof Knight) {
+            if (getBoard().getSquare(c).isOccupied() && !getBoard().getSquare(c).Occupant().getColor().sameColor(getColor()) && getBoard().getSquare(c).Occupant() instanceof Knight) {
                 return true;
             }
         }
