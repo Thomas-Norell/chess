@@ -5,15 +5,18 @@ import board.Coordinate;
 import board.Square;
 import board.Color;
 
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
+
 
 public abstract class Piece {
     private Coordinate coord;
     private Color color;
     private boolean alive = true;
     private ChessBoard board;
+    Node node;
 
     protected final void setBoard(ChessBoard b) {
         board = b;
@@ -63,6 +66,13 @@ public abstract class Piece {
             ((Pawn) this).hasMoved = true;
         }
 
+    }
+
+    public void setNode(Node n) {
+        node = n;
+    }
+    public Node getNode() {
+        return node;
     }
 
     public abstract double getValue();
