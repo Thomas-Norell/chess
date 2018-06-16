@@ -1,5 +1,6 @@
 package board;
 
+import engine.Heuristics;
 import game.Visualizer;
 import pieces.*;
 
@@ -178,6 +179,12 @@ public class ChessBoard {
             return whitePieces;
         }
         return blackPieces;
+    }
+    public boolean isCheckMate(Color player) {
+        if (Heuristics.allMoves(this, player).size() == 0) {
+            return true;
+        }
+        return false;
     }
 
 

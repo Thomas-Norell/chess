@@ -61,6 +61,10 @@ public class Heuristics {
             worth -= 0.2 * p.getValue();
         }
 
+        if (board.isCheckMate(player)) {
+            worth += 200;
+        }
+
         return worth;
     }
 
