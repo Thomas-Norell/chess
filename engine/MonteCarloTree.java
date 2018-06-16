@@ -6,13 +6,14 @@ import board.Move;
 import game.Controller;
 import game.Visualizer;
 
+import javax.xml.transform.Source;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class MonteCarloTree {
     private int strength;
-    private final double c = 10;
-    private final int depthLimit = 3;
+    private final double c = 1.4;
+    private final int depthLimit = 2;
     private ArrayList<Node> fringe;
     private Node root;
     public MonteCarloTree(ChessBoard board, Color player, int strength) {
@@ -32,15 +33,26 @@ public class MonteCarloTree {
         n.addChild(child);
     }
     private void calcVals(Node n) {
-        if (n.movesLeft.size() == 0) {
+        if (n.movesLeft.size() == 0 || n.depth > depthLimit) {
             n.decisionVal = 0;
         }
         else if (n.numDescendents == 0) {
-            n.decisionVal = n.wins + c * Math.sqrt(Math.log(root.numDescendents));
+            if (n.player.sameColor(root.player)) {
+                n.decisionVal = n.wins + c * Math.sqrt(Math.log(root.numDescendents));
+            }
+            else {
+                n.decisionVal = -n.wins + c * Math.sqrt(Math.log(root.numDescendents));
+            }
+
         }
 
         else {
-            n.decisionVal = n.wins/n.numDescendents + c * Math.sqrt(Math.log(root.numDescendents)/n.numDescendents);
+            if (n.player.sameColor(root.player)) {
+                n.decisionVal = n.wins / n.numDescendents + c * Math.sqrt(Math.log(root.numDescendents) / n.numDescendents);
+            }
+            else {
+                n.decisionVal = -n.wins / n.numDescendents + c * Math.sqrt(Math.log(root.numDescendents) / n.numDescendents);
+            }
         }
         if (n.isLeaf()) {
             return;
@@ -58,8 +70,9 @@ public class MonteCarloTree {
             }
         }
         for (Node c : n.children) {
-            if (getBestNode(c, best).decisionVal > best.decisionVal) {
-                best = c;
+            Node potential = getBestNode(c, best);
+            if (potential.decisionVal > best.decisionVal) {
+                best = potential;
             }
         }
         return best;
@@ -69,9 +82,9 @@ public class MonteCarloTree {
         for (int i = 0; i < strength; i++) {
             deepen(whichNodeToDeepen());
         }
-        Node bestMove = root.children.get(0);
+        Node bestMove = root.children.get(new Random().nextInt(root.children.size()));
         for (Node n : root.children) {
-            if (n.numDescendents != 0 && n.wins/n.numDescendents > bestMove.wins / bestMove.numDescendents) {
+            if (n.wins/n.numDescendents < bestMove.wins / bestMove.numDescendents) {
                 bestMove = n;
             }
         }
@@ -90,7 +103,7 @@ public class MonteCarloTree {
         ChessBoard game;
         ArrayList<Node> children;
         Node parent;
-        int wins;
+        float wins;
         Color player;
         int numDescendents;
         Move move;
@@ -100,12 +113,13 @@ public class MonteCarloTree {
             this.parent = parent;
             this.player = player;
             children = new ArrayList();
-            if (Heuristics.winner(game) == player) {
+            /*if (Heuristics.winner(game) == player) {
                 wins = 1;
             }
             else {
                 wins = 0;
-            }
+            }*/
+            wins = Heuristics.value(game, player);
             movesLeft = Heuristics.allMoves(game, player);
             backPropogate(this);
             numDescendents = 0;
@@ -120,7 +134,7 @@ public class MonteCarloTree {
             if (!this.isRoot()) {
                 parent.numDescendents += 1;
                 if (sourceNode.player.sameColor(parent.player)) {
-                    parent.wins += 1;
+                    parent.wins += sourceNode.wins;
                 }
                 parent.backPropogate(sourceNode);
             }

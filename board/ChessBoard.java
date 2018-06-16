@@ -149,6 +149,7 @@ public class ChessBoard {
 
     public Square getSquare(Coordinate c) {
         if (c.getY() > 7 || c.getY() < 0 || c.getX() > 7 || c.getX() < 0) {
+            //throw new ArrayIndexOutOfBoundsException("I can't make a coordinate that big!");
             return new Square(new White(), new Coordinate(100, 100), this);
         }
         return board[c.getY() * 8 + c.getX()];

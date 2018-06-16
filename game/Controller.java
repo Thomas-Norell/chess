@@ -7,24 +7,22 @@ import javafx.stage.Stage;
 import pieces.Piece;
 
 public class Controller {
-    private final int strength = 10000;
+    private final int strength = 4000000;
     ChessBoard board;
     Color playerColor;
     Piece source;
     Square destination;
     Stage stage;
-    Visualizer visual;
-    public Controller(Color color, Visualizer visual) {
+    public Controller(Color color, Stage stage) {
         playerColor = color;
         board = new ChessBoard();
-        this.stage = stage;
 
         if (!playerColor.isWhite()) {
             Move m = new MonteCarloTree(board, playerColor.opposite(), strength).bestMove();
             m.source.move(m.destination);
         }
-        this.visual = visual;
-        visual.renderBoard(board, this);
+        this.stage = stage;
+        Visualizer.renderBoard(board, this, stage);
 
     }
 
@@ -46,7 +44,7 @@ public class Controller {
                 //TODO: Burning down and rebuilding javaFX everytime is slow and ugly
                 Move m = new MonteCarloTree(board, playerColor.opposite(), strength).bestMove();
                 m.source.move(m.destination);
-                visual.renderBoard(board, this);
+                Visualizer.renderBoard(board, this, stage);
             }
             destination = null;
 

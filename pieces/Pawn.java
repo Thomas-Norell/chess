@@ -44,13 +44,13 @@ public class Pawn extends Piece {
         Square front = board.getSquare(new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY() + direction));
         Square frontLeft = board.getSquare(new Coordinate(this.getCoordinate().getX() - direction, this.getCoordinate().getY() + direction));
         Square frontRight = board.getSquare(new Coordinate(this.getCoordinate().getX() + direction, this.getCoordinate().getY() + direction));
-        if (front != null && !front.isOccupied()) {
+        if (front != null && front.isValid() &&!front.isOccupied()) {
             moves.add(front);
         }
-        if (front != null && frontLeft.isOccupied() && !frontLeft.Occupant().getColor().sameColor(this.getColor())) {
+        if (frontLeft != null && frontLeft.isValid() && frontLeft.isOccupied() && !frontLeft.Occupant().getColor().sameColor(this.getColor())) {
             moves.add(frontLeft);
         }
-        if (front != null && frontRight.isOccupied() && !frontRight.Occupant().getColor().sameColor(this.getColor())) {
+        if (frontRight != null && frontRight.isValid() &&frontRight.isOccupied() && !frontRight.Occupant().getColor().sameColor(this.getColor())) {
             moves.add(frontRight);
         }
         if (!hasMoved) {

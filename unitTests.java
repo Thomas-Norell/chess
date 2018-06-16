@@ -1,9 +1,13 @@
-import board.ChessBoard;
-import board.Coordinate;
-import board.Square;
+import board.*;
+import engine.MonteCarloTree;
+import game.Controller;
+import game.Visualizer;
+import javafx.application.Application;
+import javafx.stage.Stage;
 import org.junit.Test;
 import pieces.Pawn;
 import pieces.Piece;
+import pieces.Queen;
 
 
 import java.util.ArrayList;
@@ -63,4 +67,26 @@ public class unitTests {
         assertEquals(kingPawn, dest.Occupant());
 
     }
+    @Test
+    public void testMonte() {
+        ChessBoard b = new ChessBoard();
+        Pawn whiteKingPawn = (Pawn) b.getSquare(new Coordinate(4, 1)).Occupant();
+        whiteKingPawn.move(b.getSquare(new Coordinate(4, 3)));
+        Pawn blackKingPawn = (Pawn) b.getSquare(new Coordinate(6, 6)).Occupant();
+        blackKingPawn.move(b.getSquare(new Coordinate(6, 5)));
+        Queen whiteQueen = (Queen) b.getSquare(new Coordinate(3,0)).Occupant();
+        whiteQueen.move(b.getSquare(new Coordinate(7, 5)));
+        MonteCarloTree decision = new MonteCarloTree(b, new Black(), 1000);
+        Visualizer.renderBoard(b);
+        assertEquals(decision.bestMove().source, blackKingPawn);
+
+    }
+    public static void main(String[] args) {
+        Application.launch(args);
+    }
+
+    public void start(Stage stage) {
+        testMonte();
+    }
+
 }

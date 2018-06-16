@@ -9,4 +9,7 @@ public class Move {
         this.source = source;
         this.destination = destination;
     }
+    public void makeMove() {
+        source.move(destination);
+    }
 }

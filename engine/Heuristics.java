@@ -49,11 +49,14 @@ public class Heuristics {
         for (Piece p : board.pieces(player)) { //Having pieces on the board is good
             worth += p.getValue();
         }
+        for (Piece p : board.pieces(player.opposite())) {
+            worth -= p.getValue();
+        }
         worth += squaresAttacking(board, player).size() * 0.05; //every square attacked is 0.1
 
-        for (Piece p : piecesAttacking(board, player)) { //Increase worth for attacking pieces
+        /*for (Piece p : piecesAttacking(board, player)) { //Increase worth for attacking pieces
             worth += 0.1 * p.getValue();
-        }
+        }*/
         for (Piece p : piecesAttacking(board, player.opposite())) { //Decrease worth if piece is under attack
             worth -= 0.2 * p.getValue();
         }

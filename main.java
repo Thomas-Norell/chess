@@ -1,18 +1,40 @@
+import board.Black;
 import board.ChessBoard;
 import board.Coordinate;
 import board.Square;
+import engine.MonteCarloTree;
+import game.Visualizer;
+import javafx.application.Application;
+import javafx.stage.Stage;
+import org.junit.Test;
+import pieces.Pawn;
 import pieces.Piece;
+import board.Move;
+import pieces.Queen;
 
-public class main {
-    public static void main(String[] args) {
+
+public class main extends Application{
+    @Test
+    public void testMonte() {
         ChessBoard b = new ChessBoard();
-        Piece source = b.getSquare(new Coordinate(3, 0)).Occupant();
-        for (Square s : source.validMoves()) {
-            System.out.println(b.moveNotate(source, s));
-        }
+        Pawn whiteKingPawn = (Pawn) b.getSquare(new Coordinate(4, 1)).Occupant();
+        whiteKingPawn.move(b.getSquare(new Coordinate(4, 3)));
+        Pawn blackKingPawn = (Pawn) b.getSquare(new Coordinate(6, 6)).Occupant();
+        blackKingPawn.move(b.getSquare(new Coordinate(6, 5)));
+        Queen whiteQueen = (Queen) b.getSquare(new Coordinate(3,0)).Occupant();
+        whiteQueen.move(b.getSquare(new Coordinate(7, 4)));
+        MonteCarloTree decision = new MonteCarloTree(b, new Black(), 200);
+        Visualizer.renderBoard(b);
+        Move m = decision.bestMove();
+        m.makeMove();
+        Visualizer.renderBoard(b);
 
-        ChessBoard c = new ChessBoard(b);
-        System.out.print(b.getSquare(new Coordinate(0,0)) == c.getSquare(new Coordinate(0,0))); //Ensuring a deep copy
+    }
+    public static void main(String[] args) {
+        Application.launch(args);
+    }
 
+    public void start(Stage stage) {
+        testMonte();
     }
 }
