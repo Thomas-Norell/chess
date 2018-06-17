@@ -3,24 +3,14 @@ import board.ChessBoard;
 import board.Coordinate;
 import board.Square;
 import board.White;
-import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.Scene;
 import javafx.application.Application;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.scene.layout.StackPane;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Label;
-import board.Black;
 import board.Move;
 
 public class Visualizer extends Application{

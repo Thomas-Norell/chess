@@ -9,7 +9,7 @@ import java.util.Random;
 public class MonteCarloTree {
     private int strength;
     private final double c = 1.414;
-    private final int depthLimit = 2;
+    private final int depthLimit = 3;
     private Node root;
     public MonteCarloTree(ChessBoard board, Color player, int strength) {
         root = new Node(0, board,player, null, null);
@@ -29,22 +29,16 @@ public class MonteCarloTree {
     }
     private void calcVals(Node n) {
         int mul;
-        if (n.player.sameColor(root.player)) {
-            mul = 1;
-        }
-        else {
-            mul = -1;
-        }
         if (n.movesLeft.size() == 0 || n.depth > depthLimit) {
             n.decisionVal = 0;
         }
         else if (n.numDescendents == 0) {
-            n.decisionVal = (mul * n.wins + c * Math.sqrt(Math.log(root.numDescendents)))/ Math.pow(2, n.depth);
+            n.decisionVal = (Math.abs(n.wins) + c * Math.sqrt(Math.log(root.numDescendents))) / Math.pow(2, n.depth);
 
         }
 
         else {
-            n.decisionVal = (mul * n.wins / n.numDescendents + c * Math.sqrt(Math.log(root.numDescendents) / n.numDescendents)) / Math.pow(2, n.depth);
+            n.decisionVal = (Math.abs(n.wins) / n.numDescendents + c * Math.sqrt(Math.log(root.numDescendents) / n.numDescendents)) / Math.pow(2, n.depth);
 
         }
         if (n.isLeaf()) {
