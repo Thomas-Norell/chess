@@ -12,7 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
 import board.Move;
-
+import java.util.concurrent.TimeUnit;
 public class Visualizer extends Application{
     private static final int xDim = 600;
     private static final int yDim = 600;

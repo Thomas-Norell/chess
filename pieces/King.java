@@ -7,6 +7,7 @@ import board.Square;
 import java.sql.SQLRecoverableException;
 import java.util.ArrayList;
 import board.Color;
+import engine.Heuristics;
 import javafx.scene.image.Image;
 
 public class King extends Piece {
@@ -56,19 +57,6 @@ public class King extends Piece {
 
         for (Square s : potentials) {
             verifyAdd(moves, s);
-        }
-        ArrayList<Square> badMoves = new ArrayList<>();
-        for (Square s : moves) {
-            ChessBoard sim = new ChessBoard(board);
-            Square aMove = sim.getSquare(s.getCoord());
-            Piece aPiece = sim.getSquare(this.getCoordinate()).Occupant();
-            aPiece.move(aMove);
-            if (sim.isKingChecked(this.getColor())) {
-                badMoves.add(s);
-            }
-        }
-        for (Square s : badMoves) {
-            moves.remove(s);
         }
         return moves;
     }
@@ -128,6 +116,20 @@ public class King extends Piece {
 
         return false;
     }
+    private boolean checkKing() {
+        for (int x = -1; x < 2; x++) {
+            for (int y = -1; y < 2; y ++) {
+                Coordinate coord = new Coordinate(this.getCoordinate().getX() + x, this.getCoordinate().getY() + y);
+                if (coord.getX() < 8 && coord.getX() >=0 && coord.getY() < 8 && coord.getY() >= 0) {
+                    if (getBoard().getSquare(coord).isOccupied() && !getBoard().getSquare(coord).Occupant().getColor().sameColor(getColor()) && getBoard().getSquare(coord).Occupant() instanceof King) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+
+    }
 
     private boolean checkKnight() { //Also checks pawn
         ArrayList<Coordinate> moves = new ArrayList();
@@ -171,7 +173,7 @@ public class King extends Piece {
 
         ArrayList<Coordinate> bads = new ArrayList();
         for (Coordinate c : moves) {
-            if (c.getX() > 7 || c.getX() <=0 || c.getY() >7 || c.getY() <= 0) {
+            if (c.getX() > 7 || c.getX() < 0 || c.getY() >7 || c.getY() < 0) {
                 bads.add(c);
             }
         }
@@ -188,7 +190,7 @@ public class King extends Piece {
 
     public boolean isChecked() {
 
-        return (checkStraightHelper(1) || checkDiagHelper(1,1) || checkKnight() || checkPawn());
+        return (checkStraightHelper(1) || checkDiagHelper(1,1) || checkKnight() || checkPawn()) || checkKing();
 
     }
 

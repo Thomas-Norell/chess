@@ -133,20 +133,12 @@ public class ChessBoard {
 
     }
     public boolean isKingChecked(Color player) {
-        ArrayList<Piece> pieces;
-        if (player.isWhite()) {
-            pieces = this.whitePieces;
-
-        }
-        else {
-            pieces = this.blackPieces;
-        }
-        for (Piece p : pieces) {
+        for (Piece p : pieces(player)) {
             if (p instanceof King) {
                 return ((King) p).isChecked();
             }
         }
-        Visualizer.renderBoard(this);
+        //Visualizer.renderBoard(this);
         throw new ArrayIndexOutOfBoundsException("I didn't find a king in your pieces, something is wrong!");
     }
 
@@ -181,10 +173,30 @@ public class ChessBoard {
         return blackPieces;
     }
     public boolean isCheckMate(Color player) {
-        if (Heuristics.allMoves(this, player).size() == 0) {
+        King king = null;
+        for (Piece p : pieces(player)) {
+            if (p instanceof King) {
+                king = ((King) p);
+                break;
+            }
+        }
+        if (king == null) {
+            throw new Error("Couldn't find a king!");
+        }
+        if (king.isChecked() && Heuristics.allMoves(this, player).size() == 0) {
             return true;
         }
         return false;
+    }
+
+    public Color whoCheckMate() {
+        if (isCheckMate(new White())) {
+            return new White();
+        }
+        else if (isCheckMate(new Black())) {
+            return new Black();
+        }
+        return null;
     }
 
 

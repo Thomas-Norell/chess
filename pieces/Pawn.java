@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 
 import board.Color;
+import game.Visualizer;
 import javafx.scene.image.Image;
 
 public class Pawn extends Piece {
@@ -58,19 +59,6 @@ public class Pawn extends Piece {
             if (!front.isOccupied() && !frontFront.isOccupied() && frontFront != null && frontFront.isValid()) {
                 moves.add(frontFront);
             }
-        }
-        ArrayList<Square> badMoves = new ArrayList<>();
-        for (Square s : moves) {
-            ChessBoard sim = new ChessBoard(board);
-            Square aMove = sim.getSquare(s.getCoord());
-            Piece aPiece = sim.getSquare(this.getCoordinate()).Occupant();
-            aPiece.move(aMove);
-            if (sim.isKingChecked(this.getColor())) {
-                badMoves.add(s);
-            }
-        }
-        for (Square s : badMoves) {
-            moves.remove(s);
         }
         return moves;
     }

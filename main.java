@@ -1,14 +1,10 @@
-import board.Black;
-import board.ChessBoard;
-import board.Coordinate;
-import board.Square;
+import board.*;
 import engine.MonteCarloTree;
 import game.Visualizer;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.junit.Test;
 import pieces.*;
-import board.Move;
 
 
 public class main extends Application{
@@ -119,12 +115,19 @@ public class main extends Application{
         Visualizer.renderBoard(b);
 
     }
+    @Test
+    public void testPlayout() {
+        ChessBoard b = new ChessBoard();
+        MonteCarloTree tree = new MonteCarloTree(b, new White(), 100);
+        System.out.print(tree.playout(tree.root));
+
+    }
     public static void main(String[] args) {
         //testFork();
-        Application.launch(args);
+       Application.launch(args);
     }
 
     public void start(Stage stage) {
-        testFork();
+        testPlayout();
     }
 }

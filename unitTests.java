@@ -81,12 +81,21 @@ public class unitTests {
 
     }
 
+    @Test
+    public void testPlayout() {
+        ChessBoard b = new ChessBoard();
+        MonteCarloTree tree = new MonteCarloTree(b, new White(), 100);
+        System.out.print(tree.playout(tree.root));
+
+    }
+
     public static void main(String[] args) {
-        Application.launch(args);
+        //Application.launch(args);
     }
 
     public void start(Stage stage) {
-        testMonte();
+        //testMonte();
     }
+
 
 }

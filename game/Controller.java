@@ -1,13 +1,13 @@
 package game;
 
 import board.*;
+import engine.Heuristics;
 import engine.MonteCarloTree;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import pieces.Piece;
 
 public class Controller {
-    private final int strength = 10000;
+    private final int strength = 20000;
     ChessBoard board;
     Color playerColor;
     Piece source;
@@ -35,10 +35,12 @@ public class Controller {
         }
         else if (source != null) {
             destination = target;
-            if (source.validMoves().contains(destination)) {
-                source.move(destination);
-                vis.update(board, new Move(source, destination));
-                return new MonteCarloTree(board, playerColor.opposite(), strength).bestMove();
+            for (Move m : Heuristics.allMoves(board, playerColor)) {
+                if (m.source == source && m.destination == destination) {
+                    source.move(destination);
+                    vis.update(board, new Move(source, destination));
+                    return new MonteCarloTree(board, playerColor.opposite(), strength).bestMove();
+                }
             }
             destination = null;
 

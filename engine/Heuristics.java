@@ -38,7 +38,12 @@ public class Heuristics {
         ArrayList<Move> moves = new ArrayList<>();
         for (Piece p : board.pieces(player)) {
             for (Square s : p.validMoves()) {
-                moves.add(new Move(p, s));
+                ChessBoard sim = new ChessBoard(board);
+                sim.getSquare(p.getCoordinate()).Occupant().move(sim.getSquare(s.getCoord()));
+                if (!sim.isKingChecked(player)) {
+                    moves.add(new Move(p, s));
+                }
+
             }
         }
         return moves;
@@ -49,17 +54,17 @@ public class Heuristics {
         for (Piece p : board.pieces(player)) { //Having pieces on the board is good
             worth += p.getValue();
         }
-        for (Piece p : board.pieces(player.opposite())) {
+        /*for (Piece p : board.pieces(player.opposite())) {
             worth -= p.getValue();
-        }
+        }*/
         worth += squaresAttacking(board, player).size() * 0.05; //every square attacked is 0.1
 
-        /*for (Piece p : piecesAttacking(board, player)) { //Increase worth for attacking pieces
+        for (Piece p : piecesAttacking(board, player)) { //Increase worth for attacking pieces
             worth += 0.1 * p.getValue();
-        }*/
-        for (Piece p : piecesAttacking(board, player.opposite())) { //Decrease worth if piece is under attack
-            worth -= 0.2 * p.getValue();
         }
+        /*for (Piece p : piecesAttacking(board, player.opposite())) { //Decrease worth if piece is under attack
+            worth -= 0.2 * p.getValue();
+        }*/
 
         if (board.isCheckMate(player)) {
             worth += 200;
@@ -69,11 +74,10 @@ public class Heuristics {
     }
 
     public static Color winner(ChessBoard board) {
-        double val = value(board, new White());
-        double valBlack = value(board, new Black());
         if (value(board, new White()) > value(board, new Black())) {
             return new White();
         }
         return new Black();
     }
+
 }
