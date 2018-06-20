@@ -1,8 +1,5 @@
 package game;
-import board.ChessBoard;
-import board.Coordinate;
-import board.Square;
-import board.White;
+import board.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.Scene;
@@ -11,8 +8,7 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
-import board.Move;
-import java.util.concurrent.TimeUnit;
+
 public class Visualizer extends Application{
     private static final int xDim = 600;
     private static final int yDim = 600;
@@ -30,6 +26,18 @@ public class Visualizer extends Application{
     public void start(Stage stage) {
         this.stage = stage;
         controller = new Controller(new White(), stage, this);
+    }
+    public void endGame(Color winner) {
+        if (winner.isWhite()) {
+            stage.setTitle("White wins!");
+        }
+        else if (winner != null) {
+            stage.setTitle("Black wins!");
+        }
+        else {
+            stage.setTitle("Stalemate!");
+        }
+
     }
 
     public static void renderBoard(ChessBoard board) {

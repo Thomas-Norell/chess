@@ -76,18 +76,19 @@ public class unitTests {
         blackKingPawn.move(b.getSquare(new Coordinate(6, 5)));
         Queen whiteQueen = (Queen) b.getSquare(new Coordinate(3,0)).Occupant();
         whiteQueen.move(b.getSquare(new Coordinate(7, 4)));
-        MonteCarloTree decision = new MonteCarloTree(b, new Black(), 1000);
-        assertEquals(decision.bestMove().source, blackKingPawn);
+        MonteCarloTree decision = new MonteCarloTree(b, new Black(), 10);
+        assertEquals(blackKingPawn, decision.bestMove().source);
 
     }
 
-    @Test
+
+    /*@Test
     public void testPlayout() {
         ChessBoard b = new ChessBoard();
         MonteCarloTree tree = new MonteCarloTree(b, new White(), 100);
         System.out.print(tree.playout(tree.root));
 
-    }
+    }*/
 
     public static void main(String[] args) {
         //Application.launch(args);

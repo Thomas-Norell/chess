@@ -1,6 +1,8 @@
 package board;
 
 import pieces.Piece;
+import pieces.Pawn;
+import pieces.Queen;
 
 public class Move {
     public Piece source;
@@ -12,4 +14,5 @@ public class Move {
     public void makeMove() {
         source.move(destination);
     }
+
 }

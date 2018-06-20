@@ -67,7 +67,7 @@ public class Heuristics {
         }*/
 
         if (board.isCheckMate(player)) {
-            worth += 200;
+            worth += 600;
         }
 
         return worth;
@@ -78,6 +78,24 @@ public class Heuristics {
             return new White();
         }
         return new Black();
+    }
+    private static double probBlack(ChessBoard board) {
+        double bVal = value(board, new Black());
+        double wVal = value(board, new White());
+        double p = 0.5 * Math.pow(2.71, -(wVal - bVal) * (wVal - bVal) / 50);
+        if (wVal > bVal) {
+            return p;
+        }
+        else {
+            return 1 - p;
+        }
+    }
+
+    public static double probWin(ChessBoard board, Color player) {
+        if (player.isWhite()) {
+            return 1 - probBlack(board);
+        }
+        return probBlack(board);
     }
 
 }

@@ -29,33 +29,46 @@ public abstract class Piece {
     public final Coordinate getCoordinate() {
         return this.coord;
     }
+
     public final void setCoordinate(Coordinate c) {
         this.coord = c;
     }
+
     public final Color getColor() {
         return this.color;
     }
+
     public final void setColor(Color c) {
         this.color = c;
     }
+
     public boolean isAlive() {
         return alive;
     }
+
     public void kill() {
         alive = false;
         if (this.color.isWhite()) {
             board.getWhitePieces().remove(this);
-        }
-        else {
+        } else {
             board.getBlackPieces().remove(this);
         }
     }
+
     public abstract Piece deepCopy(ChessBoard newBoard);
 
     public abstract ArrayList<Square> validMoves();
 
     public final void move(Square dest) {
         Square source = board.getSquare(this.getCoordinate());
+        /*if (this instanceof Pawn && (dest.getCoord().getY() == 7 || dest.getCoord().getY() == 0)) {
+            Queen me = new Queen(this.getColor(), dest.getCoord(), getBoard());
+            source.setOccupant(null);
+            this.kill();
+            dest.setOccupant(me);
+            return;
+        }*/
+
         this.setCoordinate(dest.getCoord());
         source.setOccupant(null);
         if (dest.isOccupied()) {
@@ -65,7 +78,6 @@ public abstract class Piece {
         if (this instanceof Pawn) {
             ((Pawn) this).hasMoved = true;
         }
-
     }
 
     public void setNode(Node n) {
