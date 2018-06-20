@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import pieces.Piece;
 
 public class Controller {
-    private final double strength = 60;
+    private final double strength = 10;
     ChessBoard board;
     Color playerColor;
     Piece source;

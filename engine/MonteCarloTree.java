@@ -76,6 +76,7 @@ public class MonteCarloTree {
                 bestMove = n;
             }
         }
+        heap = null;
         return bestMove.move;
 
 
