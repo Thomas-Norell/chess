@@ -4,14 +4,18 @@ import board.*;
 
 import java.util.ArrayList;
 import java.util.Random;
+import engine.ArrayHeap;
 
 public class MonteCarloTree {
+    private Node bestNode;
+    private ArrayHeap<Node> heap;
     private double strength;
-    private final double c = 1.1;
+    private final double c = Math.sqrt(2);
     private final int depthLimit = 3;
     public Node root;
     public MonteCarloTree(ChessBoard board, Color player, double strength) {
-        root = new Node(0, board,player, null, null);
+        this.heap = new ArrayHeap();
+        root = new Node(0, board,player, null, null, this);
         this.strength = strength;
     }
     public Color playout(Node n) {
@@ -39,42 +43,25 @@ public class MonteCarloTree {
         n.movesLeft.remove(move);
         ChessBoard newGame = new ChessBoard(n.board);
         newGame.getSquare(move.source.getCoordinate()).Occupant().move(newGame.getSquare(move.destination.getCoord()));
-        Node child = new Node(n.depth + 1, newGame, n.player.opposite(), n, move);
+        Node child = new Node(n.depth + 1, newGame, n.player.opposite(), n, move, this);
         n.addChild(child);
     }
-    private void calcVals(Node n) {
+    private double calcVals(Node n) {
         if (n.isRoot() && n.movesLeft.size() > 0) {
-            n.decisionVal = Integer.MAX_VALUE;
+            return Integer.MAX_VALUE;
         }
         else if (n.movesLeft.size() == 0 || n.depth > depthLimit || n.isMate) {
-            n.decisionVal = -Integer.MAX_VALUE;
+             return -Integer.MAX_VALUE;
         }
         else if (n.numDescendents == 0) {
-            n.decisionVal = (n.wins + c * Math.sqrt(Math.log(root.numDescendents)))/Math.pow(2.3, n.depth);
+            return (n.wins + c * Math.sqrt(Math.log(root.numDescendents + 1)))/Math.pow(2.3, n.depth);
 
         }
-
         else {
-            n.decisionVal =  (n.wins / n.numDescendents + c * Math.sqrt(Math.log(root.numDescendents) / n.numDescendents))/Math.pow(2.3, n.depth);
+            return (n.wins / n.numDescendents + c * Math.sqrt(Math.log(root.numDescendents) / n.numDescendents))/Math.pow(2.3, n.depth);
 
         }
-        if (n.isLeaf()) {
-            return;
-        }
-        for (Node c : n.children) {
-            calcVals(c);
-        }
-    }
 
-    private Node getBestNode(Node n) {
-        Node best = n;
-        for (Node c : n.children) {
-            Node potential = getBestNode(c);
-            if (potential.decisionVal > best.decisionVal) {
-                best = potential;
-            }
-        }
-        return best;
     }
 
     public Move bestMove() {
@@ -95,12 +82,12 @@ public class MonteCarloTree {
     }
 
     private Node whichNodeToDeepen() {
-        calcVals(root);
-        return getBestNode(root);
+        return heap.peek();
 
     }
-    private class Node {
-        double decisionVal;
+    class Node {
+        MonteCarloTree tree;
+        double priority;
         int depth;
         ChessBoard board;
         ArrayList<Node> children;
@@ -110,24 +97,26 @@ public class MonteCarloTree {
         int numDescendents;
         Move move;
         boolean isMate;
+        int index; //Heap contents index
         ArrayList<Move> movesLeft;
-        Node(int depth, ChessBoard board, Color player, Node parent, Move m) {
+        Node(int depth, ChessBoard board, Color player, Node parent, Move m, MonteCarloTree tree) {
+            this.tree = tree;
             this.board = board;
             this.parent = parent;
             this.player = player;
+            this.depth = depth;
             children = new ArrayList();
             wins = Heuristics.probWin(board, player);
-            //wins = Heuristics.value(board, player);
             movesLeft = Heuristics.allMoves(board, player.opposite());
+            priority = calcVals(this);
+            tree.heap.insert(this, priority);
+            isMate = board.isCheckMate(new White()) || board.isCheckMate(new White());
+            numDescendents = 0;
+
+            move = m;
             if (!isRoot()) {
                 parent.backPropogate(this);
             }
-            isMate = board.isCheckMate(new White()) || board.isCheckMate(new White());
-
-            numDescendents = 0;
-            this.depth = depth;
-            move = m;
-
         }
         void addChild(Node child) {
             children.add(child);
@@ -144,6 +133,8 @@ public class MonteCarloTree {
             if (!isRoot()) {
                 parent.backPropogate(sourceNode);
             }
+            this.priority = calcVals(this);
+            this.tree.heap.changePriority(this, priority);
         }
         boolean isRoot() {
             return parent == null;
