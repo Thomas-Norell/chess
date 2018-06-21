@@ -78,18 +78,13 @@ public class unitTests {
         MonteCarloTree decision = new MonteCarloTree(b, new Black(), 2.5);
         assertEquals(blackKingPawn, decision.bestMove().source);
     }*/
+
     @Test
-    public void testFoolsMate() {
+    public void testPromote() {
         ChessBoard b = new ChessBoard();
         Pawn whiteBish = (Pawn) b.getSquare(new Coordinate(5, 1)).Occupant();
-        whiteBish.move(b.getSquare(new Coordinate(5, 2)));
-        Pawn blackKing = (Pawn) b.getSquare(new Coordinate(4, 6)).Occupant();
-        blackKing.move(b.getSquare(new Coordinate(4, 4)));
-        b.getSquare(new Coordinate(6, 1)).Occupant().move(b.getSquare(new Coordinate(6, 3)));
-        MonteCarloTree tree = new MonteCarloTree(b, new White(), 2.5);
-        //Visualizer.renderBoard(b);
-         Move bestMove = tree.bestMove();
-        assertTrue(bestMove.destination.getCoord().equals(new Coordinate(7, 3)));
+        whiteBish.move(b.getSquare(new Coordinate(7, 7)));
+        assertTrue(b.getSquare(new Coordinate(7, 7)).Occupant() instanceof Queen);
 
     }
 

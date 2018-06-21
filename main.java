@@ -6,6 +6,8 @@ import javafx.stage.Stage;
 import org.junit.Test;
 import pieces.*;
 
+import static org.junit.Assert.assertTrue;
+
 
 public class main extends Application{
     @Test
@@ -119,8 +121,16 @@ public class main extends Application{
         //testFork();
        Application.launch(args);
     }
+    @Test
+    public void testPromote() {
+        ChessBoard b = new ChessBoard();
+        Pawn whiteBish = (Pawn) b.getSquare(new Coordinate(5, 1)).Occupant();
+        whiteBish.move(b.getSquare(new Coordinate(7, 7)));
+        Visualizer.renderBoard(b);
+
+    }
 
     public void start(Stage stage) {
-       // testPlayout();
+        testPromote();
     }
 }

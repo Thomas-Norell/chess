@@ -4,8 +4,6 @@ import pieces.Piece;
 import pieces.Pawn;
 import pieces.Queen;
 
-import java.util.Objects;
-
 public class Move {
     public Piece source;
     public Square destination;

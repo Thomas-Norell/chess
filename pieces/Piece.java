@@ -61,13 +61,16 @@ public abstract class Piece {
 
     public final void move(Square dest) {
         Square source = board.getSquare(this.getCoordinate());
-        /*if (this instanceof Pawn && (dest.getCoord().getY() == 7 || dest.getCoord().getY() == 0)) {
+        if (this instanceof Pawn && (dest.getCoord().getY() == 7 || dest.getCoord().getY() == 0)) {
             Queen me = new Queen(this.getColor(), dest.getCoord(), getBoard());
             source.setOccupant(null);
-            this.kill();
+
             dest.setOccupant(me);
+            board.pieces(this.getColor()).add(me);
+            this.kill();
             return;
-        }*/
+
+        }
 
         this.setCoordinate(dest.getCoord());
         source.setOccupant(null);
