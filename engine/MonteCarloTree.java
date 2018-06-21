@@ -44,20 +44,6 @@ public class MonteCarloTree {
             return 0;
         }
         return n.wins / n.numDescendents + c * Math.sqrt(Math.log(n.parent.numDescendents) / n.numDescendents);
-        /*if (n.isRoot() && n.movesLeft.size() == 0) {
-            return -Integer.MAX_VALUE;
-        }
-        else if (n.isRoot()){
-            return Integer.MAX_VALUE;
-        }
-        else if (n.parent.childStdDev == 0) {
-            return n.wins;
-        }
-        else if (n.movesLeft.size() == 0) {
-            return -Integer.MAX_VALUE;
-        }
-        return n.wins/n.parent.childStdDev;*/
-
     }
 
     public Move bestMove() {
@@ -66,37 +52,34 @@ public class MonteCarloTree {
         while (System.nanoTime() - start < strength) {
             deepen(whichNodeToDeepen(root));
         }
-        /*for (int x = 0; x < 100; x++) {
-            deepen(whichNodeToDeepen(root));
-        }*/
         Node bestMove = root.children.get(new Random().nextInt(root.children.size()));
         for (Node n : root.children) {
             if (n.numDescendents != 0 && n.numDescendents > bestMove.numDescendents) {
                 bestMove = n;
             }
         }
-        //heap = null;
         return bestMove.move;
     }
 
     private Node whichNodeToDeepen(Node n) {
-        if (n.movesLeft.size() > 0) {
+        if (n.movesLeft.size() > 0) { //TODO: this time complexity must be improved!
             return n;
         }
-        Node best = n.children.get(new Random().nextInt(n.children.size()));
+        return whichNodeToDeepen(n.childP.peek());
+
+
+        /*Node best = n.children.get(new Random().nextInt(n.children.size()));
         for (Node c : n.children) {
             if (c.priority > best.priority) {
                 best = c;
             }
         }
-        return whichNodeToDeepen(best);
+        return whichNodeToDeepen(best);*/
 
     }
 
     class Node {
         MonteCarloTree tree;
-        double childStdDev;
-        double childMean;
         double priority;
         int depth;
         ChessBoard board;
@@ -107,7 +90,8 @@ public class MonteCarloTree {
         int numDescendents;
         Move move;
         boolean isMate;
-        int index; //Heap contents index
+        int index;
+        ArrayHeap childP;
         ArrayList<Move> movesLeft;
         Node(int depth, ChessBoard board, Color player, Node parent, Move m, MonteCarloTree tree) {
             this.tree = tree;
@@ -115,9 +99,8 @@ public class MonteCarloTree {
             this.parent = parent;
             this.player = player;
             this.depth = depth;
-            this.childMean = 0;
-            this.childStdDev = 0;
             numDescendents = 1;
+            childP = new ArrayHeap();
             children = new ArrayList();
             wins = Heuristics.probWin(board, player);
             movesLeft = Heuristics.allMoves(board, player.opposite());
@@ -131,13 +114,7 @@ public class MonteCarloTree {
         }
         void addChild(Node child) {
             children.add(child);
-            /*childMean = (childMean * (children.size() - 1) + child.wins) / (children.size());
-            if (children.size() > 1) {
-                childStdDev = childStdDev * childStdDev * (children.size() - 2);
-                childStdDev += (child.wins - childMean) * (child.wins - childMean);
-                childStdDev = Math.sqrt(childStdDev / (children.size() - 1));
-            }*/
-
+            childP.insert(child, child.priority);
         }
         void backPropogate(Node sourceNode) {
             numDescendents += 1;
@@ -149,10 +126,9 @@ public class MonteCarloTree {
             }
             this.priority = calcVals(this);
             if (!isRoot()) {
+                this.parent.childP.changePriority(this, this.priority);
                 parent.backPropogate(sourceNode);
             }
-
-            //this.tree.heap.changePriority(this, priority);
         }
         boolean isRoot() {
             return parent == null;
