@@ -82,7 +82,7 @@ public class Heuristics {
     private static double probBlack(ChessBoard board) {
         double bVal = value(board, new Black());
         double wVal = value(board, new White());
-        double p = 0.5 * Math.pow(2.71, -(wVal - bVal) * (wVal - bVal) / 50);
+        double p = 0.5 * Math.pow(2.71, -(wVal - bVal) * (wVal - bVal) / 25);
         if (wVal > bVal) {
             return p;
         }
@@ -97,5 +97,6 @@ public class Heuristics {
         }
         return probBlack(board);
     }
+
 
 }
