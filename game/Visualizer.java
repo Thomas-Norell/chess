@@ -1,5 +1,6 @@
 package game;
 import board.*;
+import engine.MonteCarloTree;
 import javafx.scene.layout.GridPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.Scene;
@@ -17,6 +18,7 @@ public class Visualizer extends Application{
     GridPane gridPane;
     Scene scene;
     Move m;
+    MonteCarloTree tree;
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -65,12 +67,7 @@ public class Visualizer extends Application{
                             //System.out.println( "Node: " + node + " at " + GridPane.getRowIndex( node) + "/" + GridPane.getColumnIndex( node));
                             Square clickedSquare = board.getSquare(new Coordinate(GridPane.getColumnIndex( node), 7 - GridPane.getRowIndex( node)));
                             //System.out.print(clickedSquare.Occupant());
-                            me.m = controller.addTarget(clickedSquare, me);
-                            if (m != null) {
-                                m.source.move(m.destination);
-                                update(board, m);
-                                m = null;
-                            }
+                            controller.addTarget(clickedSquare, me);
                             return;
                         }
                     }

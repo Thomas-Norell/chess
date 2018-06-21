@@ -22,7 +22,9 @@ public class Controller {
             m.source.move(m.destination);
         }
         this.stage = stage;
+        vis.tree = new MonteCarloTree(board, new Black(), strength);
         vis.renderBoard(board, this, stage);
+
 
     }
 
@@ -37,12 +39,22 @@ public class Controller {
             destination = target;
             for (Move m : Heuristics.allMoves(board, playerColor)) {
                 if (m.source == source && m.destination == destination) {
+                    vis.tree.advance(new Move(source, destination));
                     source.move(destination);
                     vis.update(board, new Move(source, destination));
-                    if (board.isCheckMate(playerColor)) {
+                    if (board.isCheckMate(playerColor.opposite())) {
                         vis.endGame(playerColor);
                     }
-                    return new MonteCarloTree(board, playerColor, strength).bestMove();
+                    Move best = vis.tree.bestMove();
+                    vis.tree.advance(best);
+                    best = new Move(board.getSquare(best.source.getCoordinate()).Occupant(), board.getSquare(best.destination.getCoord()));
+                    best.makeMove();
+                    vis.update(board, best);
+                    if (board.isCheckMate(playerColor)) {
+                        vis.endGame(playerColor.opposite());
+                    }
+
+                    return best;
                 }
             }
             destination = null;

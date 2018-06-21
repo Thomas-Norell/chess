@@ -66,7 +66,7 @@ public class Heuristics {
             worth -= 0.2 * p.getValue();
         }*/
 
-        if (board.isCheckMate(player)) {
+        if (board.isCheckMate(player.opposite())) {
             worth += 600;
         }
 
@@ -80,6 +80,9 @@ public class Heuristics {
         return new Black();
     }
     private static double probBlack(ChessBoard board) {
+        if (board.isCheckMate(new White())) {
+            return 1;
+        }
         double bVal = value(board, new Black());
         double wVal = value(board, new White());
         double p = 0.5 * Math.pow(2.71, -(wVal - bVal) * (wVal - bVal) / 25);

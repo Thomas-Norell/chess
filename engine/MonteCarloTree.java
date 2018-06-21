@@ -13,24 +13,47 @@ public class MonteCarloTree {
     public MonteCarloTree(ChessBoard board, Color player, double strength) {
         //this.heap = new ArrayHeap();
         root = new Node(0, board,player, null, null, this);
-        this.strength = strength;
+        this.strength = strength * 1e9;
     }
-    public Color playout(Node n) {
-        ChessBoard b = new ChessBoard(n.board);
-        Color currentPlayer = n.player;
-        ArrayList<Move> moves;
-        int x = 0;
-        while (b.whoCheckMate() == null) {
-            moves = Heuristics.allMoves(b, currentPlayer);
-             moves.get(new Random().nextInt(moves.size())).makeMove();
-            currentPlayer = currentPlayer.opposite();
-            x++;
+
+    public Move bestMove() {
+        Long start = System.nanoTime();
+
+        while (System.nanoTime() - start < strength) {
+            deepen(whichNodeToDeepen(root));
         }
-        return b.whoCheckMate();
+        Node bestMove = root.children.get(new Random().nextInt(root.children.size()));
+        for (Node n : root.children) {
+            if (n.numDescendents != 0 && n.numDescendents > bestMove.numDescendents) {
+                bestMove = n;
+            }
+        }
+        return bestMove.move;
     }
+    public void advance(Move m) {
+        for (Node n : root.children) {
+            if (n.move.equals(m)) {
+                root = n;
+                n.parent = null;
+                return;
+            }
+        }
+        for (Move move : root.movesLeft) {
+            if (move.equals(m)) {
+                root = new Node(root.depth += 1, root.board, root.player.opposite(), null, move, this);
+                return;
+            }
+        }
+        throw new Error("Could not advance, move not found");
+    }
+
+
     private void deepen(Node n) {
         if (n.movesLeft.size() == 0) {
-            throw new Error("Either I ran out of depth or something is broken!");
+            //throw new Error("Either I ran out of depth or something is broken!");
+            n.numDescendents += 1;
+            n.parent.backPropogate(n);
+            return;
         }
         Move move = n.movesLeft.get(new Random().nextInt(n.movesLeft.size()));
         n.movesLeft.remove(move);
@@ -46,36 +69,14 @@ public class MonteCarloTree {
         return n.wins / n.numDescendents + c * Math.sqrt(Math.log(n.parent.numDescendents) / n.numDescendents);
     }
 
-    public Move bestMove() {
-        Long start = System.nanoTime();
-        strength = strength * 1e9;
-        while (System.nanoTime() - start < strength) {
-            deepen(whichNodeToDeepen(root));
-        }
-        Node bestMove = root.children.get(new Random().nextInt(root.children.size()));
-        for (Node n : root.children) {
-            if (n.numDescendents != 0 && n.numDescendents > bestMove.numDescendents) {
-                bestMove = n;
-            }
-        }
-        return bestMove.move;
-    }
-
     private Node whichNodeToDeepen(Node n) {
-        if (n.movesLeft.size() > 0) { //TODO: this time complexity must be improved!
+        if (n.movesLeft.size() > 0) {
+            return n;
+        }
+        if (n.childP.size() == 0) {
             return n;
         }
         return whichNodeToDeepen(n.childP.peek());
-
-
-        /*Node best = n.children.get(new Random().nextInt(n.children.size()));
-        for (Node c : n.children) {
-            if (c.priority > best.priority) {
-                best = c;
-            }
-        }
-        return whichNodeToDeepen(best);*/
-
     }
 
     class Node {

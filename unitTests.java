@@ -1,13 +1,12 @@
 import board.*;
 import engine.MonteCarloTree;
-import game.Controller;
 import game.Visualizer;
-import javafx.application.Application;
 import javafx.stage.Stage;
 import org.junit.Test;
 import pieces.Pawn;
 import pieces.Piece;
 import pieces.Queen;
+import javafx.application.Application;
 
 
 import java.util.ArrayList;
@@ -67,7 +66,7 @@ public class unitTests {
         assertEquals(kingPawn, dest.Occupant());
 
     }
-    @Test
+    /*@Test
     public void testMonte() {
         ChessBoard b = new ChessBoard();
         Pawn whiteKingPawn = (Pawn) b.getSquare(new Coordinate(4, 1)).Occupant();
@@ -76,26 +75,30 @@ public class unitTests {
         blackKingPawn.move(b.getSquare(new Coordinate(6, 5)));
         Queen whiteQueen = (Queen) b.getSquare(new Coordinate(3,0)).Occupant();
         whiteQueen.move(b.getSquare(new Coordinate(7, 4)));
-        MonteCarloTree decision = new MonteCarloTree(b, new Black(), 10);
+        MonteCarloTree decision = new MonteCarloTree(b, new Black(), 2.5);
         assertEquals(blackKingPawn, decision.bestMove().source);
+    }*/
+    @Test
+    public void testFoolsMate() {
+        ChessBoard b = new ChessBoard();
+        Pawn whiteBish = (Pawn) b.getSquare(new Coordinate(5, 1)).Occupant();
+        whiteBish.move(b.getSquare(new Coordinate(5, 2)));
+        Pawn blackKing = (Pawn) b.getSquare(new Coordinate(4, 6)).Occupant();
+        blackKing.move(b.getSquare(new Coordinate(4, 4)));
+        b.getSquare(new Coordinate(6, 1)).Occupant().move(b.getSquare(new Coordinate(6, 3)));
+        MonteCarloTree tree = new MonteCarloTree(b, new White(), 2.5);
+        //Visualizer.renderBoard(b);
+         Move bestMove = tree.bestMove();
+        assertTrue(bestMove.destination.getCoord().equals(new Coordinate(7, 3)));
 
     }
-
-
-    /*@Test
-    public void testPlayout() {
-        ChessBoard b = new ChessBoard();
-        MonteCarloTree tree = new MonteCarloTree(b, new White(), 100);
-        System.out.print(tree.playout(tree.root));
-
-    }*/
 
     public static void main(String[] args) {
         //Application.launch(args);
     }
 
     public void start(Stage stage) {
-        //testMonte();
+        //testFoolsMate();
     }
 
 

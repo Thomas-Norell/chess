@@ -115,19 +115,12 @@ public class main extends Application{
         Visualizer.renderBoard(b);
 
     }
-    @Test
-    public void testPlayout() {
-        ChessBoard b = new ChessBoard();
-        MonteCarloTree tree = new MonteCarloTree(b, new White(), 100);
-        System.out.print(tree.playout(tree.root));
-
-    }
     public static void main(String[] args) {
         //testFork();
        Application.launch(args);
     }
 
     public void start(Stage stage) {
-        testPlayout();
+       // testPlayout();
     }
 }
