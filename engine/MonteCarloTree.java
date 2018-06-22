@@ -29,6 +29,7 @@ public class MonteCarloTree {
                 bestMove = n;
             }
         }
+        System.out.println(root.numDescendents);
         return bestMove.move;
     }
     public void advance(Move m) {
@@ -53,7 +54,6 @@ public class MonteCarloTree {
 
     private void deepen(Node n) {
         if (n.movesLeft.size() == 0) {
-            //throw new Error("Either I ran out of depth or something is broken!");
             n.numDescendents += 1;
             if (!n.isRoot()) {
                 n.parent.backPropogate(n);
@@ -95,7 +95,6 @@ public class MonteCarloTree {
         Color player;
         int numDescendents;
         Move move;
-        boolean isMate;
         int index;
         ArrayHeap childP;
         ArrayList<Move> movesLeft;
@@ -108,11 +107,11 @@ public class MonteCarloTree {
             numDescendents = 1;
             childP = new ArrayHeap();
             children = new ArrayList();
-            wins = Heuristics.probWin(board, player);
             movesLeft = Heuristics.allMoves(board, player.opposite());
+            wins = Heuristics.probWin(board, player, this);
+
             priority = calcVals(this);
             //tree.heap.insert(this, priority);
-            isMate = board.isCheckMate(new White()) || board.isCheckMate(new White());
             move = m;
             if (!isRoot()) {
                 parent.backPropogate(this);

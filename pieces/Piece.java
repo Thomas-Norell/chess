@@ -5,6 +5,7 @@ import board.Coordinate;
 import board.Square;
 import board.Color;
 
+import engine.Heuristics;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 
@@ -60,8 +61,16 @@ public abstract class Piece {
     public abstract ArrayList<Square> validMoves();
 
     public final void move(Square dest) {
+        if (dest.isOccupied() && dest.Occupant() instanceof King) {
+            throw new Error("I shouldn't be allowed to take a king!");
+        }
+
+
         if (this instanceof Pawn || dest.isOccupied()) {
             this.getBoard().movesSinceCaptureorPawn = 0;
+        }
+        else {
+            this.getBoard().movesSinceCaptureorPawn += 1;
         }
 
 

@@ -66,10 +66,6 @@ public class Heuristics {
             worth -= 0.2 * p.getValue();
         }*/
 
-        if (board.isCheckMate(player.opposite())) {
-            worth += 600;
-        }
-
         return worth;
     }
 
@@ -79,11 +75,12 @@ public class Heuristics {
         }
         return new Black();
     }
-    private static double probBlack(ChessBoard board) {
+    private static double probBlack(ChessBoard board, MonteCarloTree.Node n) {
         if (board.isCheckMate(new White())) {
             return 1;
         }
-        else if (board.isStaleMate()) {
+
+        else if (board.isStaleMate(n.player.opposite(), n.movesLeft)) {
             return 0.5;
         }
         double bVal = value(board, new Black());
@@ -97,11 +94,11 @@ public class Heuristics {
         }
     }
 
-    public static double probWin(ChessBoard board, Color player) {
+    public static double probWin(ChessBoard board, Color player, MonteCarloTree.Node n) {
         if (player.isWhite()) {
-            return 1 - probBlack(board);
+            return 1 - probBlack(board, n);
         }
-        return probBlack(board);
+        return probBlack(board, n);
     }
 
 

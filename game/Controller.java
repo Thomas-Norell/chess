@@ -8,7 +8,7 @@ import pieces.Piece;
 import pieces.King;
 
 public class Controller {
-    private final double strength = 1;
+    private final double strength = 10;
     ChessBoard board;
     Color playerColor;
     Piece source;
@@ -23,7 +23,7 @@ public class Controller {
             m.source.move(m.destination);
         }
         this.stage = stage;
-        vis.tree = new MonteCarloTree(board, new Black(), strength);
+        vis.tree = new MonteCarloTree(new ChessBoard(), new Black(), strength);
         vis.renderBoard(board, this, stage);
 
 
@@ -52,15 +52,12 @@ public class Controller {
                     Move best = vis.tree.bestMove();
                     vis.tree.advance(best);
                     best = (new Move(board.getSquare(best.source.getCoordinate()).Occupant(), board.getSquare(best.destination.getCoord())));
-
                     best.makeMove();
 
                     //best = new Move(board.getSquare(best.source.getCoordinate()).Occupant(), board.getSquare(best.destination.getCoord()));
 
 
                     vis.update(board, best);
-
-
 
                     if (board.isCheckMate(playerColor)) {
                         vis.endGame(playerColor.opposite());

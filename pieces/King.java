@@ -101,13 +101,10 @@ public class King extends Piece {
         for (int y = this.getCoordinate().getY() + yD, x = this.getCoordinate().getX() + xD; y < 8 && y >= 0 && x < 8 && x >= 0; y += yD, x += xD) {
             Square s = getBoard().getSquare(new Coordinate(x, y));
             if (s.isOccupied()) {
-                if (s.Occupant().getColor().sameColor(this.getColor())) {
-                    break;
-                }
-                if (s.Occupant() instanceof Bishop || s.Occupant() instanceof Queen) {
+                if (!s.Occupant().getColor().sameColor(this.getColor()) && (s.Occupant() instanceof Bishop || s.Occupant() instanceof Queen)) {
                     return true;
                 }
-
+                break;
             }
         }
 

@@ -133,7 +133,7 @@ public class main extends Application{
     public Color testGame() {
         ChessBoard b = new ChessBoard();
         ChessBoard c = new ChessBoard();
-        MonteCarloTree white = new MonteCarloTree(b, new Black(), 0.5);
+        MonteCarloTree white = new MonteCarloTree(b, new Black(), 1);
         MonteCarloTree black = new MonteCarloTree(c, new Black(), 0.5);
         Move best;
         while (!b.isCheckMate(new White()) || !b.isCheckMate(new Black())) {
@@ -152,7 +152,7 @@ public class main extends Application{
             best.makeMove();
 
             if (b.isCheckMate(new Black())) {
-                System.out.println("White win!");
+                System.out.println("White wins!");
                 return new White();
             }
             if (b.isDraw()) {
@@ -172,7 +172,7 @@ public class main extends Application{
 */
             best.makeMove();
             if (b.isCheckMate(new White())) {
-                System.out.println("Black win!");
+                System.out.println("Black wins!");
                 return new Black();
             }
             if (b.isDraw()) {

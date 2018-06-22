@@ -1,6 +1,7 @@
 package board;
 
 import engine.Heuristics;
+import engine.MonteCarloTree;
 import game.Visualizer;
 import pieces.*;
 
@@ -192,33 +193,27 @@ public class ChessBoard {
         return false;
     }
 
-    public boolean isDraw() { //TODO: Three fold repetition of position!
-        return isStaleMate() || this.movesSinceCaptureorPawn > 50;
+    public boolean isDraw(Color player, ArrayList<Move> moves) { //TODO: Three fold repetition of position!
+        return isStaleMate(player, moves) || this.movesSinceCaptureorPawn > 50;
     }
 
-    public boolean isStaleMate() {
+    public boolean isDraw() {
+        return isDraw(new White(), Heuristics.allMoves(this, new White())) || isDraw(new Black(), Heuristics.allMoves(this, new Black()));
+    }
+
+    public boolean isStaleMate(Color player, ArrayList<Move> moves) {
         King wKing = null;
-        King bKing = null;
-        for (Piece p : pieces(new White())) {
+        for (Piece p : pieces(player)) {
             if (p instanceof King) {
                 wKing = ((King) p);
-                break;
             }
         }
 
-        for (Piece p : pieces(new Black())) {
-            if (p instanceof King) {
-                bKing = ((King) p);
-                break;
-            }
-        }
-
-
-
-        if (wKing == null || bKing == null) {
+        if (wKing == null) {
             throw new Error("Couldn't find a king!");
         }
-        if ((!wKing.isChecked() && Heuristics.allMoves(this, new White()).size() == 0) || (!bKing.isChecked() && Heuristics.allMoves(this, new Black()).size() == 0)) {
+
+        if (!wKing.isChecked() && moves.size() == 0) {
             return true;
         }
         return false;
