@@ -83,6 +83,9 @@ public class Heuristics {
         if (board.isCheckMate(new White())) {
             return 1;
         }
+        else if (board.isStaleMate()) {
+            return 0.5;
+        }
         double bVal = value(board, new Black());
         double wVal = value(board, new White());
         double p = 0.5 * Math.pow(2.71, -(wVal - bVal) * (wVal - bVal) / 25);

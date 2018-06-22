@@ -10,7 +10,9 @@ public class ChessBoard {
     private Square[] board = new Square[64];
     private ArrayList<Piece> whitePieces;
     private ArrayList<Piece> blackPieces;
+    public int movesSinceCaptureorPawn;
     public ChessBoard() {
+        movesSinceCaptureorPawn = 0;
         whitePieces = new ArrayList();
         blackPieces = new ArrayList();
         int mode;
@@ -112,6 +114,7 @@ public class ChessBoard {
     }
     public ChessBoard(ChessBoard b) {
         board = new Square[64];
+        movesSinceCaptureorPawn = b.movesSinceCaptureorPawn;
         int count = 0;
         for (Square s : b.board) {
             board[count] = new Square(s.getColor(), new Coordinate(s.getCoord().getX(), s.getCoord().getY()), this);
@@ -184,6 +187,38 @@ public class ChessBoard {
             throw new Error("Couldn't find a king!");
         }
         if (king.isChecked() && Heuristics.allMoves(this, player).size() == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isDraw() { //TODO: Three fold repetition of position!
+        return isStaleMate() || this.movesSinceCaptureorPawn > 50;
+    }
+
+    public boolean isStaleMate() {
+        King wKing = null;
+        King bKing = null;
+        for (Piece p : pieces(new White())) {
+            if (p instanceof King) {
+                wKing = ((King) p);
+                break;
+            }
+        }
+
+        for (Piece p : pieces(new Black())) {
+            if (p instanceof King) {
+                bKing = ((King) p);
+                break;
+            }
+        }
+
+
+
+        if (wKing == null || bKing == null) {
+            throw new Error("Couldn't find a king!");
+        }
+        if ((!wKing.isChecked() && Heuristics.allMoves(this, new White()).size() == 0) || (!bKing.isChecked() && Heuristics.allMoves(this, new Black()).size() == 0)) {
             return true;
         }
         return false;

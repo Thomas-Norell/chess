@@ -7,10 +7,12 @@ import board.Square;
 import java.sql.SQLRecoverableException;
 import java.util.ArrayList;
 import board.Color;
+import engine.ArrayHeap;
 import engine.Heuristics;
 import javafx.scene.image.Image;
 
 public class King extends Piece {
+    boolean hasMoved = false;
 
     @Override
     public double getValue() {
@@ -26,7 +28,9 @@ public class King extends Piece {
 
     @Override
     public Piece deepCopy(ChessBoard b) {
-        return new King(this.getColor(), new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY()), b);
+        King a = new King(this.getColor(), new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY()), b);
+        a.hasMoved = this.hasMoved;
+        return a;
     }
 
     private void verifyAdd(ArrayList<Square> moves, Square s) {
@@ -42,7 +46,6 @@ public class King extends Piece {
 
     @Override
     public ArrayList<Square> validMoves() {
-        //TODO: Castle
         ChessBoard board = this.getBoard();
         ArrayList<Square> potentials = new ArrayList();
         ArrayList<Square> moves = new ArrayList();
@@ -54,6 +57,9 @@ public class King extends Piece {
         potentials.add(board.getSquare(new Coordinate(this.getCoordinate().getX() + 1, this.getCoordinate().getY() + 1)));
         potentials.add(board.getSquare(new Coordinate(this.getCoordinate().getX() + 1, this.getCoordinate().getY() + 0)));
         potentials.add(board.getSquare(new Coordinate(this.getCoordinate().getX() + 1, this.getCoordinate().getY() - 1)));
+        for (Coordinate c : castleMoves()) {
+            potentials.add(board.getSquare(c));
+        }
 
         for (Square s : potentials) {
             verifyAdd(moves, s);
@@ -65,12 +71,10 @@ public class King extends Piece {
         for (int y = this.getCoordinate().getY() + direction; y < 8 && y >= 0; y += direction) {
             Square s = getBoard().getSquare(new Coordinate(this.getCoordinate().getX(), y));
             if (s.isOccupied()) {
-                if (s.Occupant().getColor().sameColor(this.getColor())) {
-                    break;
-                }
-                if (s.Occupant() instanceof Rook || s.Occupant() instanceof Queen) {
+                if (s.Occupant().getColor().sameColor(this.getColor().opposite()) && (s.Occupant() instanceof Rook || s.Occupant() instanceof Queen)) {
                     return true;
                 }
+                break;
 
             }
         }
@@ -78,12 +82,10 @@ public class King extends Piece {
         for (int x = this.getCoordinate().getX() + direction; x < 8 && x >= 0; x += direction) {
             Square s = getBoard().getSquare(new Coordinate(x, this.getCoordinate().getY()));
             if (s.isOccupied()) {
-                if (s.Occupant().getColor().sameColor(this.getColor())) {
-                    break;
-                }
-                if (s.Occupant() instanceof Rook || s.Occupant() instanceof Queen) {
+                if (s.Occupant().getColor().sameColor(this.getColor().opposite()) && (s.Occupant() instanceof Rook || s.Occupant() instanceof Queen)) {
                     return true;
                 }
+                break;
 
             }
         }
@@ -192,6 +194,40 @@ public class King extends Piece {
 
         return (checkStraightHelper(1) || checkDiagHelper(1,1) || checkKnight() || checkPawn()) || checkKing();
 
+    }
+    private boolean wouldIBeChecked(Coordinate coord) {
+        ChessBoard board = new ChessBoard(getBoard());
+        board.getSquare(this.getCoordinate()).Occupant().move(board.getSquare(coord));
+        return board.isKingChecked(getColor());
+    }
+
+    public ArrayList<Coordinate> castleMoves() {
+        ArrayList<Coordinate> moves = new ArrayList();
+
+        Square leftRook = getBoard().getSquare(new Coordinate(0, getCoordinate().getY()));
+        if (!this.hasMoved && leftRook.isOccupied() && leftRook.Occupant() instanceof Rook
+                && !((Rook) leftRook.Occupant()).hasMoved
+                && !getBoard().getSquare(new Coordinate(1, getCoordinate().getY())).isOccupied()
+                && !getBoard().getSquare(new Coordinate(2, getCoordinate().getY())).isOccupied()
+                && !getBoard().getSquare(new Coordinate(3, getCoordinate().getY())).isOccupied()
+                && !wouldIBeChecked(new Coordinate(1, getCoordinate().getY()))
+                && !wouldIBeChecked(new Coordinate(2, getCoordinate().getY()))
+                && !wouldIBeChecked(new Coordinate(3, getCoordinate().getY()))
+                && !this.isChecked()
+                ) {
+            moves.add(new Coordinate(2, getCoordinate().getY()));
+        }
+        Square rightRook = getBoard().getSquare(new Coordinate(7, getCoordinate().getY()));
+        if (!this.hasMoved && rightRook.isOccupied() && rightRook.Occupant() instanceof Rook
+                && !((Rook) rightRook.Occupant()).hasMoved
+                && !getBoard().getSquare(new Coordinate(5, getCoordinate().getY())).isOccupied()
+                && !getBoard().getSquare(new Coordinate(6, getCoordinate().getY())).isOccupied()
+                && !wouldIBeChecked(new Coordinate(5, getCoordinate().getY()))
+                && !wouldIBeChecked(new Coordinate(6, getCoordinate().getY()))
+                ) {
+            moves.add(new Coordinate(6, getCoordinate().getY()));
+        }
+        return moves;
     }
 
     public Image image() {

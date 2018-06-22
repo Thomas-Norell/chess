@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
+import pieces.King;
+import pieces.Piece;
 
 public class Visualizer extends Application{
     private static final int xDim = 600;
@@ -134,7 +136,8 @@ public class Visualizer extends Application{
         int x, y;
         x = m.source.getCoordinate().getX();
         y = m.source.getCoordinate().getY();
-        gridPane.getChildren().remove(board.getSquare(new Coordinate(x, y)).Occupant().getNode());
+        Piece thisPiece = board.getSquare(new Coordinate(x, y)).Occupant();
+        gridPane.getChildren().remove(thisPiece.getNode());
         ImageView square = new ImageView();
         square.setImage(board.getSquare(new Coordinate(x, y)).image());
         square.setFitHeight(yDim / 8);
@@ -162,6 +165,30 @@ public class Visualizer extends Application{
             GridPane.setColumnIndex(piece, x);
             gridPane.getChildren().add(piece);
             board.getSquare(new Coordinate(x, y)).Occupant().setNode(piece);
+        }
+
+        if (m.source instanceof King && m.isCastle) { //Castle
+            int rookX;
+            int rank;
+            int rookNew;
+            if (m.destination.getCoord().getX() == 6) {
+                rookX = 7;
+                rookNew = 5;
+            }
+            else {
+                rookX = 0;
+                rookNew = 3;
+            }
+            if (m.source.getColor().isWhite()) {
+                rank = 0;
+            }
+            else {
+                rank = 7;
+            }
+
+            Move rookMove = new Move(board.getSquare(new Coordinate(rookNew, rank)).Occupant(), board.getSquare(new Coordinate(rookNew, rank)));
+            assert  rookMove.source instanceof pieces.Rook;
+            update(board, rookMove);
         }
 
     }

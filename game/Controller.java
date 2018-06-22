@@ -5,9 +5,10 @@ import engine.Heuristics;
 import engine.MonteCarloTree;
 import javafx.stage.Stage;
 import pieces.Piece;
+import pieces.King;
 
 public class Controller {
-    private final double strength = 10;
+    private final double strength = 1;
     ChessBoard board;
     Color playerColor;
     Piece source;
@@ -39,17 +40,28 @@ public class Controller {
             destination = target;
             for (Move m : Heuristics.allMoves(board, playerColor)) {
                 if (m.source == source && m.destination == destination) {
-                    vis.tree.advance(new Move(source, destination));
+                    if (m.source instanceof King && Math.abs(m.source.getCoordinate().getX() - m.destination.getCoord().getX()) > 1) {
+                        m.isCastle = true;
+                    }
+                    vis.tree.advance(m);
                     source.move(destination);
-                    vis.update(board, new Move(source, destination));
+                    vis.update(board, m);
                     if (board.isCheckMate(playerColor.opposite())) {
                         vis.endGame(playerColor);
                     }
                     Move best = vis.tree.bestMove();
                     vis.tree.advance(best);
-                    best = new Move(board.getSquare(best.source.getCoordinate()).Occupant(), board.getSquare(best.destination.getCoord()));
+                    best = (new Move(board.getSquare(best.source.getCoordinate()).Occupant(), board.getSquare(best.destination.getCoord())));
+
                     best.makeMove();
+
+                    //best = new Move(board.getSquare(best.source.getCoordinate()).Occupant(), board.getSquare(best.destination.getCoord()));
+
+
                     vis.update(board, best);
+
+
+
                     if (board.isCheckMate(playerColor)) {
                         vis.endGame(playerColor.opposite());
                     }

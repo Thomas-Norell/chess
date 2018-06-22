@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import org.junit.Test;
 import pieces.*;
+import engine.Heuristics;
 
 import static org.junit.Assert.assertTrue;
 
@@ -129,8 +130,87 @@ public class main extends Application{
         Visualizer.renderBoard(b);
 
     }
+    public Color testGame() {
+        ChessBoard b = new ChessBoard();
+        ChessBoard c = new ChessBoard();
+        MonteCarloTree white = new MonteCarloTree(b, new Black(), 0.5);
+        MonteCarloTree black = new MonteCarloTree(c, new Black(), 0.5);
+        Move best;
+        while (!b.isCheckMate(new White()) || !b.isCheckMate(new Black())) {
+            //System.out.println(Heuristics.probWin(b, new Black()));
+            best = white.bestMove();
+            best = new Move(b.getSquare(best.source.getCoordinate()).Occupant(), b.getSquare(best.destination.getCoord()));
+            white.advance(best);
+            black.advance(best);
+            /*
+            System.out.println("(" + (Integer.toString(best.source.getCoordinate().getX())
+
+                    + ", "+Integer.toString(best.source.getCoordinate().getY())
+                    + ") -> " + "(" + Integer.toString(best.destination.getCoord().getX())
+                    + ", " + Integer.toString(best.destination.getCoord().getY()) + ")"));
+                    */
+            best.makeMove();
+
+            if (b.isCheckMate(new Black())) {
+                System.out.println("White win!");
+                return new White();
+            }
+            if (b.isDraw()) {
+                System.out.println("It's a Draw!");
+                return null;
+
+            }
+            best = black.bestMove();
+            best = new Move(b.getSquare(best.source.getCoordinate()).Occupant(), b.getSquare(best.destination.getCoord()));
+            black.advance(best);
+            white.advance(best);
+
+            /*System.out.println("(" + (Integer.toString(best.source.getCoordinate().getX())
+                    + ", "+Integer.toString(best.source.getCoordinate().getY())
+                    + ") -> " + "(" + Integer.toString(best.destination.getCoord().getX())
+                    + ", " + Integer.toString(best.destination.getCoord().getY()) + ")"));
+*/
+            best.makeMove();
+            if (b.isCheckMate(new White())) {
+                System.out.println("Black win!");
+                return new Black();
+            }
+            if (b.isDraw()) {
+                System.out.println("It's a draw!");
+                return null;
+            }
+        }
+        return null;
+
+
+
+    }
+    @Test
+    public void testManyGames() {
+        double whiteWins = 0;
+        double blackWins = 0;
+        double draws = 0;
+        for (int x = 0; x < 10; x++) {
+            Color result = testGame();
+            if (result == null) {
+                draws += 1;
+            }
+            else if (result.isWhite()) {
+                whiteWins++;
+            }
+            else {
+                blackWins++;
+            }
+
+        }
+        System.out.println("White: " + Double.toString(whiteWins));
+        System.out.println("Black: " + Double.toString(blackWins));
+        System.out.println("Draws: " + Double.toString(draws));
+
+
+    }
 
     public void start(Stage stage) {
-        testPromote();
+        testManyGames();
     }
 }

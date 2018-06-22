@@ -60,11 +60,46 @@ public abstract class Piece {
     public abstract ArrayList<Square> validMoves();
 
     public final void move(Square dest) {
+        if (this instanceof Pawn || dest.isOccupied()) {
+            this.getBoard().movesSinceCaptureorPawn = 0;
+        }
+
+
         Square source = board.getSquare(this.getCoordinate());
-        if (this instanceof Pawn && (dest.getCoord().getY() == 7 || dest.getCoord().getY() == 0)) {
+        int y;
+        if (color.isWhite()) {
+            y = 0;
+        }
+        else {
+            y = 7;
+        }
+
+        if (this instanceof King && !((King) this).hasMoved  //Castling
+
+                && (dest.getCoord().equals(new Coordinate(2, y))
+                || dest.getCoord().equals(new Coordinate(6, y)))) {
+
+            this.setCoordinate(dest.getCoord());
+            source.setOccupant(null);
+            dest.setOccupant(this);
+            if (dest.getCoord().equals(new Coordinate(2, y))) {
+                board.getSquare(new Coordinate(0,y)).Occupant().move(getBoard().getSquare(new Coordinate(3, y)));
+            }
+            else if (dest.getCoord().equals(new Coordinate(6, y))) {
+                board.getSquare(new Coordinate(7,y)).Occupant().move(getBoard().getSquare(new Coordinate(5, y)));
+
+            }
+            ((King) this).hasMoved = true;
+            return;
+
+
+        }
+
+
+        if (this instanceof Pawn && (dest.getCoord().getY() == 7 || dest.getCoord().getY() == 0)) { //Pawn promotion
             Queen me = new Queen(this.getColor(), dest.getCoord(), getBoard());
             source.setOccupant(null);
-
+            this.setCoordinate(dest.getCoord());
             dest.setOccupant(me);
             board.pieces(this.getColor()).add(me);
             this.kill();
@@ -79,7 +114,13 @@ public abstract class Piece {
         }
         dest.setOccupant(this);
         if (this instanceof Pawn) {
-            ((Pawn) this).hasMoved = true;
+            ((Pawn )this).hasMoved = true;
+        }
+        else if (this instanceof Rook) {
+            ((Rook) this).hasMoved = true;
+        }
+        else if (this instanceof King) {
+            ((King) this).hasMoved = true;
         }
     }
 

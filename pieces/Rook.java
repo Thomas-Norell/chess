@@ -9,6 +9,7 @@ import game.Visualizer;
 import javafx.scene.image.Image;
 
 public class Rook extends Piece {
+    boolean hasMoved = false;
 
 
     public Rook(Color col, Coordinate c, ChessBoard b) {

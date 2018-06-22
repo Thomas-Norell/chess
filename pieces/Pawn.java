@@ -35,7 +35,9 @@ public class Pawn extends Piece {
 
     @Override
     public Piece deepCopy(ChessBoard b) {
-        return new Pawn(this.getColor(), new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY()), b);
+        Pawn a = new Pawn(this.getColor(), new Coordinate(this.getCoordinate().getX(), this.getCoordinate().getY()), b);
+        a.hasMoved = this.hasMoved;
+        return a;
     }
 
     @Override

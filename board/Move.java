@@ -7,6 +7,7 @@ import pieces.Queen;
 public class Move {
     public Piece source;
     public Square destination;
+    public boolean isCastle = false;
     public Move(Piece source, Square destination) {
         this.source = source;
         this.destination = destination;
@@ -19,7 +20,8 @@ public class Move {
         if (!(o instanceof Move)) {
             return false;
         }
-        return ((Move) o).source.getCoordinate().equals(source.getCoordinate()) && ((Move) o).destination.getCoord().equals(destination.getCoord());
+        this.getClass();
+        return ((Move) o).source.getCoordinate().equals(this.source.getCoordinate()) && ((Move) o).destination.getCoord().equals(this.destination.getCoord());
     }
 
 }

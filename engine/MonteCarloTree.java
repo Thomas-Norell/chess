@@ -1,6 +1,7 @@
 package engine;
 
 import board.*;
+import game.Visualizer;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -40,7 +41,9 @@ public class MonteCarloTree {
         }
         for (Move move : root.movesLeft) {
             if (move.equals(m)) {
-                root = new Node(root.depth += 1, root.board, root.player.opposite(), null, move, this);
+                ChessBoard b = new ChessBoard(root.board);
+                b.getSquare(move.source.getCoordinate()).Occupant().move(root.board.getSquare(move.destination.getCoord()));
+                root = new Node(root.depth += 1, b, root.player.opposite(), null, m, this);
                 return;
             }
         }
@@ -52,7 +55,9 @@ public class MonteCarloTree {
         if (n.movesLeft.size() == 0) {
             //throw new Error("Either I ran out of depth or something is broken!");
             n.numDescendents += 1;
-            n.parent.backPropogate(n);
+            if (!n.isRoot()) {
+                n.parent.backPropogate(n);
+            }
             return;
         }
         Move move = n.movesLeft.get(new Random().nextInt(n.movesLeft.size()));
