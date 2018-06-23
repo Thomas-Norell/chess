@@ -109,6 +109,9 @@ public abstract class Piece {
             Queen me = new Queen(this.getColor(), dest.getCoord(), getBoard());
             source.setOccupant(null);
             this.setCoordinate(dest.getCoord());
+            if (dest.isOccupied()) {
+                dest.Occupant().kill();
+            }
             dest.setOccupant(me);
             board.pieces(this.getColor()).add(me);
             this.kill();

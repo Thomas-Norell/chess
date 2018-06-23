@@ -134,7 +134,8 @@ public class main extends Application{
         ChessBoard b = new ChessBoard();
         ChessBoard c = new ChessBoard();
         MonteCarloTree white = new MonteCarloTree(b, new Black(), 1);
-        MonteCarloTree black = new MonteCarloTree(c, new Black(), 0.5);
+        MonteCarloTree black = new MonteCarloTree(c, new Black(), 1);
+        black.setC(.1);
         Move best;
         while (!b.isCheckMate(new White()) || !b.isCheckMate(new Black())) {
             //System.out.println(Heuristics.probWin(b, new Black()));
@@ -155,7 +156,7 @@ public class main extends Application{
                 System.out.println("White wins!");
                 return new White();
             }
-            if (b.isDraw()) {
+            if (b.isDraw(new Black())) {
                 System.out.println("It's a Draw!");
                 return null;
 
@@ -175,7 +176,7 @@ public class main extends Application{
                 System.out.println("Black wins!");
                 return new Black();
             }
-            if (b.isDraw()) {
+            if (b.isDraw(new White())) {
                 System.out.println("It's a draw!");
                 return null;
             }
@@ -190,7 +191,7 @@ public class main extends Application{
         double whiteWins = 0;
         double blackWins = 0;
         double draws = 0;
-        for (int x = 0; x < 10; x++) {
+        for (int x = 0; x < 25; x++) {
             Color result = testGame();
             if (result == null) {
                 draws += 1;

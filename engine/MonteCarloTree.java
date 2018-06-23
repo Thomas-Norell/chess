@@ -9,7 +9,7 @@ import java.util.Random;
 public class MonteCarloTree {
     //private ArrayHeap<Node> heap;
     private double strength;
-    private final double c = .075;
+    private double c = .075;
     public Node root;
     public MonteCarloTree(ChessBoard board, Color player, double strength) {
         //this.heap = new ArrayHeap();
@@ -29,7 +29,7 @@ public class MonteCarloTree {
                 bestMove = n;
             }
         }
-        System.out.println(root.numDescendents);
+        //System.out.println(root.numDescendents);
         return bestMove.move;
     }
     public void advance(Move m) {
@@ -82,6 +82,9 @@ public class MonteCarloTree {
             return n;
         }
         return whichNodeToDeepen(n.childP.peek());
+    }
+    public void setC(double c) {
+        this.c = c;
     }
 
     class Node {

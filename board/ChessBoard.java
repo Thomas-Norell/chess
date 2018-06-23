@@ -197,8 +197,8 @@ public class ChessBoard {
         return isStaleMate(player, moves) || this.movesSinceCaptureorPawn > 50;
     }
 
-    public boolean isDraw() {
-        return isDraw(new White(), Heuristics.allMoves(this, new White())) || isDraw(new Black(), Heuristics.allMoves(this, new Black()));
+    public boolean isDraw(Color player) {
+        return isDraw(player, Heuristics.allMoves(this, player));
     }
 
     public boolean isStaleMate(Color player, ArrayList<Move> moves) {

@@ -8,7 +8,7 @@ import pieces.Piece;
 import pieces.King;
 
 public class Controller {
-    private final double strength = 10;
+    private final double strength = 60;
     ChessBoard board;
     Color playerColor;
     Piece source;
