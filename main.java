@@ -7,6 +7,8 @@ import org.junit.Test;
 import pieces.*;
 import engine.Heuristics;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertTrue;
 
 
@@ -130,12 +132,12 @@ public class main extends Application{
         Visualizer.renderBoard(b);
 
     }
-    public Color testGame() {
+    public Color testGame(double cConstant) {
         ChessBoard b = new ChessBoard();
         ChessBoard c = new ChessBoard();
         MonteCarloTree white = new MonteCarloTree(b, new Black(), 1);
         MonteCarloTree black = new MonteCarloTree(c, new Black(), 1);
-        black.setC(.1);
+        black.setC(cConstant);
         Move best;
         while (!b.isCheckMate(new White()) || !b.isCheckMate(new Black())) {
             //System.out.println(Heuristics.probWin(b, new Black()));
@@ -153,11 +155,11 @@ public class main extends Application{
             best.makeMove();
 
             if (b.isCheckMate(new Black())) {
-                System.out.println("White wins!");
+                //System.out.println("White wins!");
                 return new White();
             }
             if (b.isDraw(new Black())) {
-                System.out.println("It's a Draw!");
+                //System.out.println("It's a Draw!");
                 return null;
 
             }
@@ -173,11 +175,11 @@ public class main extends Application{
 */
             best.makeMove();
             if (b.isCheckMate(new White())) {
-                System.out.println("Black wins!");
+                //System.out.println("Black wins!");
                 return new Black();
             }
             if (b.isDraw(new White())) {
-                System.out.println("It's a draw!");
+                //System.out.println("It's a draw!");
                 return null;
             }
         }
@@ -187,12 +189,12 @@ public class main extends Application{
 
     }
     @Test
-    public void testManyGames() {
+    public double testManyGames(double cConstant) {
         double whiteWins = 0;
         double blackWins = 0;
         double draws = 0;
         for (int x = 0; x < 25; x++) {
-            Color result = testGame();
+            Color result = testGame(cConstant);
             if (result == null) {
                 draws += 1;
             }
@@ -204,14 +206,25 @@ public class main extends Application{
             }
 
         }
+        System.out.println("Results for c = " + Double.toString(cConstant));
         System.out.println("White: " + Double.toString(whiteWins));
         System.out.println("Black: " + Double.toString(blackWins));
         System.out.println("Draws: " + Double.toString(draws));
-
+        System.out.println("-----------------------");
+        return blackWins / whiteWins;
 
     }
 
     public void start(Stage stage) {
-        testManyGames();
+        double c = .075;
+        ArrayList<Double> results = new ArrayList();
+        for (c = .025; c < .125; c += .005) {
+            results.add(testManyGames(c));
+        }
+        int x = 0;
+        for (c = .025; c < .125; c += .005) {
+            System.out.println("(" + Double.toString(c) + ", " + Double.toString(results.get(x)) + ")");
+            x++;
+        }
     }
 }

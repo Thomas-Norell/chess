@@ -29,7 +29,7 @@ public class MonteCarloTree {
                 bestMove = n;
             }
         }
-        //System.out.println(root.numDescendents);
+        System.out.println(root.numDescendents);
         return bestMove.move;
     }
     public void advance(Move m) {
@@ -101,6 +101,7 @@ public class MonteCarloTree {
         int index;
         ArrayHeap childP;
         ArrayList<Move> movesLeft;
+        ArrayList<Move> allMoves;
         Node(int depth, ChessBoard board, Color player, Node parent, Move m, MonteCarloTree tree) {
             this.tree = tree;
             this.board = board;
@@ -111,6 +112,10 @@ public class MonteCarloTree {
             childP = new ArrayHeap();
             children = new ArrayList();
             movesLeft = Heuristics.allMoves(board, player.opposite());
+            allMoves = new ArrayList();
+            for (Move move : movesLeft) {
+                allMoves.add(move);
+            }
             wins = Heuristics.probWin(board, player, this);
 
             priority = calcVals(this);

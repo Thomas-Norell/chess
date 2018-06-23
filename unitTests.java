@@ -93,8 +93,8 @@ public class unitTests {
     public Color testGame() {
         ChessBoard b = new ChessBoard();
         ChessBoard c = new ChessBoard();
-        MonteCarloTree white = new MonteCarloTree(b, new Black(), 0.5);
-        MonteCarloTree black = new MonteCarloTree(c, new Black(), 0.25);
+        MonteCarloTree white = new MonteCarloTree(b, new Black(), 1);
+        MonteCarloTree black = new MonteCarloTree(c, new Black(), 1);
         Move best;
         while (!b.isCheckMate(new White()) || !b.isCheckMate(new Black())) {
             //System.out.println(Heuristics.probWin(b, new Black()));
