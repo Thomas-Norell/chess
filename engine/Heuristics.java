@@ -76,7 +76,6 @@ public class Heuristics {
             return 1 - p;
         }
     }
-
     public static double probWin(ChessBoard board, Color player, MonteCarloTree.Node n) {
         if (player.isWhite()) {
             return 1 - probBlack(board, n);

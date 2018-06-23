@@ -5,7 +5,6 @@ import board.Coordinate;
 import board.Square;
 import java.util.ArrayList;
 import board.Color;
-import game.Visualizer;
 import javafx.scene.image.Image;
 
 public class Queen extends Piece {

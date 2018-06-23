@@ -3,12 +3,8 @@ package pieces;
 import board.ChessBoard;
 import board.Coordinate;
 import board.Square;
-
-import java.sql.SQLRecoverableException;
 import java.util.ArrayList;
 import board.Color;
-import engine.ArrayHeap;
-import engine.Heuristics;
 import javafx.scene.image.Image;
 
 public class King extends Piece {

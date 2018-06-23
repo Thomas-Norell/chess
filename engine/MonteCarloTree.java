@@ -1,8 +1,5 @@
 package engine;
-
 import board.*;
-import game.Visualizer;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -119,7 +116,6 @@ public class MonteCarloTree {
             wins = Heuristics.probWin(board, player, this);
 
             priority = calcVals(this);
-            //tree.heap.insert(this, priority);
             move = m;
             if (!isRoot()) {
                 parent.backPropogate(this);

@@ -53,10 +53,6 @@ public class Controller {
                     vis.tree.advance(best);
                     best = (new Move(board.getSquare(best.source.getCoordinate()).Occupant(), board.getSquare(best.destination.getCoord())));
                     best.makeMove();
-
-                    //best = new Move(board.getSquare(best.source.getCoordinate()).Occupant(), board.getSquare(best.destination.getCoord()));
-
-
                     vis.update(board, best);
 
                     if (board.isCheckMate(playerColor)) {

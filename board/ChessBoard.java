@@ -1,8 +1,6 @@
 package board;
 
 import engine.Heuristics;
-import engine.MonteCarloTree;
-import game.Visualizer;
 import pieces.*;
 
 import java.util.ArrayList;

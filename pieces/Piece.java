@@ -1,14 +1,10 @@
 package pieces;
-
 import board.ChessBoard;
 import board.Coordinate;
 import board.Square;
 import board.Color;
-
-import engine.Heuristics;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
-
 import java.util.ArrayList;
 
 
