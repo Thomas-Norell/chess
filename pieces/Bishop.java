@@ -10,6 +10,9 @@ import javafx.scene.image.Image;
 
 public class Bishop extends Piece {
 
+    static final Image wImage = new Image("images/whiteBishop.png");
+    static final Image bImage = new Image("images/blackBishop.png");
+
     @Override
     public double getValue() {
         return 3.1;
@@ -59,8 +62,8 @@ public class Bishop extends Piece {
 
     public Image image() {
         if (getColor().isWhite()) {
-            return new Image("images/whiteBishop.png");
+            return wImage;
         }
-        return new Image("images/blackBishop.png");
+        return bImage;
     }
 }

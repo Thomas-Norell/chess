@@ -47,6 +47,9 @@ public class MonteCarloTree {
         }
         throw new Error("Could not advance, move not found");
     }
+    public void deepen() {
+        deepen(whichNodeToDeepen(root));
+    }
 
 
     private void deepen(Node n) {

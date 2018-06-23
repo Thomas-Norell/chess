@@ -10,6 +10,8 @@ import javafx.scene.image.Image;
 
 public class Knight extends Piece {
     final int direction;
+    static final Image wImage = new Image("images/whiteKnight.png");
+    static final Image bImage = new Image("images/blackKnight.png");
 
     @Override
     public double getValue() {
@@ -69,9 +71,9 @@ public class Knight extends Piece {
     }
     public Image image() {
         if (getColor().isWhite()) {
-            return new Image("images/whiteKnight.png");
+            return wImage;
         }
-        return new Image("images/blackKnight.png");
+        return bImage;
     }
 
 }

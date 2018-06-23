@@ -10,6 +10,8 @@ import javafx.scene.image.Image;
 
 public class Rook extends Piece {
     boolean hasMoved = false;
+    static final Image wImage = new Image("images/whiteRook.png");
+    static final Image bImage = new Image("images/blackRook.png");
 
 
     public Rook(Color col, Coordinate c, ChessBoard b) {
@@ -71,8 +73,8 @@ public class Rook extends Piece {
 
     public Image image() {
         if (getColor().isWhite()) {
-            return new Image("images/whiteRook.png");
+            return wImage;
         }
-        return new Image("images/blackRook.png");
+        return bImage;
     }
 }

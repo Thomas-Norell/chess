@@ -11,10 +11,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
 import pieces.King;
 import pieces.Piece;
+import java.io.File;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.Media;
 
 public class Visualizer extends Application{
+
     private static final int xDim = 600;
+    public Thread backgroundThread;
     private static final int yDim = 600;
+    Ponder ponder;
     Controller controller;
     Stage stage;
     GridPane gridPane;
@@ -43,6 +49,66 @@ public class Visualizer extends Application{
         }
 
     }
+    public void startMove() {
+        Runnable thisMove = new Runnable() {
+            @Override
+            public void run() {
+                move();
+            }
+        };
+        Thread backroundThread = new Thread(thisMove);
+        this.backgroundThread = backroundThread;
+        backroundThread.start();
+
+    }
+
+    public void move() {
+        while (true) {
+            this.tree.deepen();
+        }
+    }
+
+    public void startChangeTurn(Square clickedSquare) {
+        Runnable thisMove = new Runnable() {
+            @Override
+            public void run() {
+                changeTurn(clickedSquare);
+            }
+        };
+
+        Thread giveController = new Thread(thisMove);
+        giveController.start();
+
+    }
+
+    public void changeTurn(Square clickedSquare) {
+        controller.addTarget(clickedSquare, this);
+    }
+
+
+    public Runnable setUpdate(ChessBoard b, Move m) {
+        Runnable update = new Runnable() {
+            @Override
+            public void run() {
+                update(b, m);
+                Media sound = new Media(new File("images/chess.wav").toURI().toString());
+                new MediaPlayer(sound).play();
+            }
+        };
+        return update;
+    }
+
+    public Runnable end(Color player) {
+        Runnable update = new Runnable() {
+            @Override
+            public void run() {
+                endGame(player);
+            }
+        };
+        return update;
+    }
+
+
 
     public static void renderBoard(ChessBoard board) {
         Stage s = new Stage();
@@ -57,19 +123,20 @@ public class Visualizer extends Application{
         stage.setScene(scene);
         stage.show();
         Visualizer me = this;
-
+        this.ponder = new Ponder( this.tree);
+        ponder.start();
         gridPane.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+
             @Override
             public void handle(MouseEvent e) {
+
 
                 for(Node node: gridPane.getChildren()) {
 
                     if( node instanceof ImageView) {
                         if( node.getBoundsInParent().contains(e.getSceneX(),  e.getSceneY())) {
-                            //System.out.println( "Node: " + node + " at " + GridPane.getRowIndex( node) + "/" + GridPane.getColumnIndex( node));
                             Square clickedSquare = board.getSquare(new Coordinate(GridPane.getColumnIndex( node), 7 - GridPane.getRowIndex( node)));
-                            //System.out.print(clickedSquare.Occupant());
-                            controller.addTarget(clickedSquare, me);
+                            startChangeTurn(clickedSquare);
                             return;
                         }
                     }
@@ -132,6 +199,8 @@ public class Visualizer extends Application{
             }
         }
     }
+
+    //TODO: Known issue, pawn's 'shadow' stay on the board
     public void update(ChessBoard board, Move m) {
         int x, y;
         x = m.source.getCoordinate().getX();
@@ -168,15 +237,12 @@ public class Visualizer extends Application{
         }
 
         if (m.source instanceof King && m.isCastle) { //Castle
-            int rookX;
             int rank;
             int rookNew;
             if (m.destination.getCoord().getX() == 6) {
-                rookX = 7;
                 rookNew = 5;
             }
             else {
-                rookX = 0;
                 rookNew = 3;
             }
             if (m.source.getColor().isWhite()) {

@@ -8,6 +8,8 @@ import board.Color;
 import javafx.scene.image.Image;
 
 public class King extends Piece {
+    static final Image wImage = new Image("images/whiteKing.png");
+    static final Image bImage = new Image("images/blackKing.png");
     boolean hasMoved = false;
 
     @Override
@@ -225,8 +227,8 @@ public class King extends Piece {
 
     public Image image() {
         if (getColor().isWhite()) {
-            return new Image("images/whiteKing.png");
+            return wImage;
         }
-        return new Image("images/blackKing.png");
+        return bImage;
     }
 }

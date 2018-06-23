@@ -8,6 +8,8 @@ import board.Color;
 import javafx.scene.image.Image;
 
 public class Queen extends Piece {
+    static final Image wImage = new Image("images/whiteQueen.png");
+    static final Image bImage = new Image("images/blackQueen.png");
 
 
     public Queen(Color col, Coordinate c, ChessBoard b) {
@@ -43,8 +45,8 @@ public class Queen extends Piece {
 
     public Image image() {
         if (getColor().isWhite()) {
-            return new Image("images/whiteQueen.png");
+            return wImage;
         }
-        return new Image("images/blackQueen.png");
+        return bImage;
     }
 }

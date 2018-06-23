@@ -4,15 +4,15 @@ import board.ChessBoard;
 import board.Coordinate;
 import board.Square;
 import java.util.ArrayList;
-import java.util.TreeMap;
 
 import board.Color;
-import game.Visualizer;
 import javafx.scene.image.Image;
 
 public class Pawn extends Piece {
     final int direction;
     boolean hasMoved = false;
+    static final Image wImage = new Image("images/whitePawn.png");
+    static final Image bImage = new Image("images/blackPawn.png");
 
     @Override
     public double getValue() {
@@ -66,9 +66,10 @@ public class Pawn extends Piece {
     }
 
     public Image image() {
+
         if (getColor().isWhite()) {
-            return new Image("images/whitePawn.png");
+            return wImage;
         }
-        return new Image("images/blackPawn.png");
+        return bImage;
     }
 }

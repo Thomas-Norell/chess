@@ -5,11 +5,8 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import org.junit.Test;
 import pieces.*;
-import engine.Heuristics;
 
 import java.util.ArrayList;
-
-import static org.junit.Assert.assertTrue;
 
 
 public class main extends Application{
