@@ -7,6 +7,8 @@ public class Square {
     private ChessBoard board;
     private Piece occupant;
     private boolean valid;
+    private static final Image wImage = new Image("images/whiteSquare.png");
+    private static final Image bImage = new Image("images/blackSquare.png");
     public Square(Color c, Coordinate coord, ChessBoard board){
         if (coord.getX() < 0 || coord.getX() > 7 || coord.getY() < 0 || coord.getY() > 7) {
             valid = false;
@@ -48,9 +50,9 @@ public class Square {
 
     public Image image() {
         if (getColor().isWhite()) {
-            return new Image("images/whiteSquare.png");
+            return wImage;
         }
-        return new Image("images/blackSquare.png");
+        return bImage;
     }
 
 }

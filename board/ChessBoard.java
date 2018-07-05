@@ -1,6 +1,7 @@
 package board;
 
 import engine.Heuristics;
+import engine.MonteCarloTree;
 import pieces.*;
 
 import java.util.ArrayList;
@@ -195,8 +196,8 @@ public class ChessBoard {
         return isStaleMate(player, moves) || this.movesSinceCaptureorPawn > 50;
     }
 
-    public boolean isDraw(Color player) {
-        return isDraw(player, Heuristics.allMoves(this, player));
+    public boolean isDraw(Color player, MonteCarloTree m) {
+        return isDraw(player, m.allMoves());
     }
 
     public boolean isStaleMate(Color player, ArrayList<Move> moves) {

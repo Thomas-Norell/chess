@@ -115,7 +115,7 @@ public class unitTests {
                 System.out.println("White win!");
                 return new White();
             }
-            if (b.isDraw(new Black())) {
+            if (b.isDraw(new Black(), black)) {
                 System.out.println("It's a Draw!");
                 return null;
 
@@ -135,7 +135,7 @@ public class unitTests {
                 System.out.println("Black win!");
                 return new Black();
             }
-            if (b.isDraw(new White())) {
+            if (b.isDraw(new White(), white)) {
                 System.out.println("It's a draw!");
                 return null;
             }

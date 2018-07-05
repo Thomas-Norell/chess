@@ -25,10 +25,10 @@ class Ponder implements Runnable {
         }
     }
 
-    public void start () {
+    public void start() {
         if (t == null) {
             t = new Thread (this);
-            t.start ();
+            t.start();
         }
     }
 

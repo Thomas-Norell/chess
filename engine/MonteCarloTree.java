@@ -6,12 +6,18 @@ import java.util.Random;
 public class MonteCarloTree {
     //private ArrayHeap<Node> heap;
     private double strength;
-    private double c = .075;
+    private double c = Math.sqrt(2);
     public Node root;
     public MonteCarloTree(ChessBoard board, Color player, double strength) {
         //this.heap = new ArrayHeap();
         root = new Node(0, board,player, null, null, this);
         this.strength = strength * 1e9;
+    }
+    public void setStrength(double strength) {
+        this.strength = strength * 1e9;
+    }
+    public ArrayList<Move> allMoves() {
+        return root.allMoves;
     }
 
     public Move bestMove() {
@@ -20,13 +26,16 @@ public class MonteCarloTree {
         while (System.nanoTime() - start < strength) {
             deepen(whichNodeToDeepen(root));
         }
+        double average = 0;
         Node bestMove = root.children.get(new Random().nextInt(root.children.size()));
         for (Node n : root.children) {
+            average += n.numDescendents;
             if (n.numDescendents != 0 && n.numDescendents > bestMove.numDescendents) {
                 bestMove = n;
             }
         }
         System.out.println(root.numDescendents);
+        //System.out.println(Integer.toString(root.numDescendents) + " " + Double.toString(bestMove.numDescendents/average).substring(0, 4) + " " + Double.toString(bestMove.wins/bestMove.numDescendents).substring(0, 4));
         return bestMove.move;
     }
     public void advance(Move m) {
@@ -83,6 +92,7 @@ public class MonteCarloTree {
         }
         return whichNodeToDeepen(n.childP.peek());
     }
+
     public void setC(double c) {
         this.c = c;
     }
@@ -150,6 +160,3 @@ public class MonteCarloTree {
         }
     }
 }
-
-
-

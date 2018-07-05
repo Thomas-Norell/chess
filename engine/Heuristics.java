@@ -36,11 +36,11 @@ public class Heuristics {
         for (Piece p : board.pieces(player)) { //Having pieces on the board is good
             worth += p.getValue();
         }
-        worth += moves.size() * 0.05; //every square attacked is 0.1
+        /*worth += moves.size() * 0.05; //every square attacked is 0.1
 
         for (Piece p : piecesAttacking(board, player, moves)) { //Increase worth for attacking pieces
             worth += 0.1 * p.getValue();
-        }
+        }*/
 
         return worth;
     }
@@ -68,7 +68,7 @@ public class Heuristics {
             wVal = bVal;
         }
 
-        double p = 0.5 * Math.pow(2.71, -(wVal - bVal) * (wVal - bVal) / 25);
+        double p = 0.5 * Math.pow(2.71, -(wVal - bVal) * (wVal - bVal) / 50);
         if (wVal > bVal) {
             return p;
         }

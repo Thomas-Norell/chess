@@ -20,10 +20,8 @@ public class main extends Application{
         Queen whiteQueen = (Queen) b.getSquare(new Coordinate(3,0)).Occupant();
         whiteQueen.move(b.getSquare(new Coordinate(7, 4)));
         MonteCarloTree decision = new MonteCarloTree(b, new Black(), 200);
-        Visualizer.renderBoard(b);
         Move m = decision.bestMove();
         m.makeMove();
-        Visualizer.renderBoard(b);
 
     }
 
@@ -48,10 +46,8 @@ public class main extends Application{
 
 
         MonteCarloTree decision = new MonteCarloTree(b, new Black(), 500);
-        Visualizer.renderBoard(b);
         Move m = decision.bestMove();
         m.makeMove();
-        Visualizer.renderBoard(b);
 
     }
 
@@ -61,10 +57,8 @@ public class main extends Application{
         Pawn whiteQueenPawn = (Pawn) b.getSquare(new Coordinate(4, 1)).Occupant();
         whiteQueenPawn.move(b.getSquare(new Coordinate(4, 3)));
         MonteCarloTree decision = new MonteCarloTree(b, new Black(), 500);
-        Visualizer.renderBoard(b);
         Move m = decision.bestMove();
         m.makeMove();
-        Visualizer.renderBoard(b);
 
     }
 
@@ -81,10 +75,8 @@ public class main extends Application{
         whiteKnight.move(b.getSquare(new Coordinate(5, 2)));
 
         MonteCarloTree decision = new MonteCarloTree(b, new Black(), 500);
-        Visualizer.renderBoard(b);
         Move m = decision.bestMove();
         m.makeMove();
-        Visualizer.renderBoard(b);
 
     }
     @Test()
@@ -111,10 +103,8 @@ public class main extends Application{
 
 
         MonteCarloTree decision = new MonteCarloTree(b, new Black(), 100);
-        Visualizer.renderBoard(b);
         Move m = decision.bestMove();
         m.makeMove();
-        Visualizer.renderBoard(b);
 
     }
     public static void main(String[] args) {
@@ -126,7 +116,6 @@ public class main extends Application{
         ChessBoard b = new ChessBoard();
         Pawn whiteBish = (Pawn) b.getSquare(new Coordinate(5, 1)).Occupant();
         whiteBish.move(b.getSquare(new Coordinate(7, 7)));
-        Visualizer.renderBoard(b);
 
     }
     public Color testGame(double cConstant) {
@@ -155,7 +144,7 @@ public class main extends Application{
                 //System.out.println("White wins!");
                 return new White();
             }
-            if (b.isDraw(new Black())) {
+            if (b.isDraw(new Black(), black)) {
                 //System.out.println("It's a Draw!");
                 return null;
 
@@ -175,7 +164,7 @@ public class main extends Application{
                 //System.out.println("Black wins!");
                 return new Black();
             }
-            if (b.isDraw(new White())) {
+            if (b.isDraw(new White(), white)) {
                 //System.out.println("It's a draw!");
                 return null;
             }
@@ -190,7 +179,7 @@ public class main extends Application{
         double whiteWins = 0;
         double blackWins = 0;
         double draws = 0;
-        for (int x = 0; x < 25; x++) {
+        for (int x = 0; x < 10; x++) {
             Color result = testGame(cConstant);
             if (result == null) {
                 draws += 1;
@@ -201,25 +190,24 @@ public class main extends Application{
             else {
                 blackWins++;
             }
-
         }
         System.out.println("Results for c = " + Double.toString(cConstant));
         System.out.println("White: " + Double.toString(whiteWins));
         System.out.println("Black: " + Double.toString(blackWins));
         System.out.println("Draws: " + Double.toString(draws));
         System.out.println("-----------------------");
-        return blackWins / whiteWins;
+        return (blackWins + draws / 2) / (whiteWins + draws / 2);
 
     }
 
     public void start(Stage stage) {
         double c = .075;
         ArrayList<Double> results = new ArrayList();
-        for (c = .025; c < .125; c += .005) {
+        for (c = .025; c < .2; c += .015) {
             results.add(testManyGames(c));
         }
         int x = 0;
-        for (c = .025; c < .125; c += .005) {
+        for (c = .025; c < .2; c += .015) {
             System.out.println("(" + Double.toString(c) + ", " + Double.toString(results.get(x)) + ")");
             x++;
         }
