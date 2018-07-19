@@ -6,7 +6,7 @@ import java.util.Random;
 public class MonteCarloTree {
     //private ArrayHeap<Node> heap;
     private double strength;
-    private double c = Math.sqrt(2);
+    private double c = .075;
     public Node root;
     public MonteCarloTree(ChessBoard board, Color player, double strength) {
         //this.heap = new ArrayHeap();
