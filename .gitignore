@@ -1,0 +1,9 @@
+.DS_STORE
+chess.iml
+out
+.idea
+META-INF
+/old
+trainingGames
+trainingGamesreal
+validationGames
