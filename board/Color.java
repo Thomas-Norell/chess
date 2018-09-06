@@ -11,6 +11,12 @@ public interface Color {
         }
         return new White();
     }
+    default Float tensorVal() {
+        if (isWhite()) {
+            return (float) 1.0;
+        }
+        return (float) -1.0;
+    }
 
 
 }

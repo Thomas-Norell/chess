@@ -1,0 +1,1 @@
+./pgn-extract ficsgamesdb_201804_standard2000_nomovetimes_9467.pgn --checkmate -ogames0 -WEPD

@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import org.junit.Test;
 import pieces.*;
+import evaluation.PositionEval;
 
 import java.util.ArrayList;
 
@@ -123,7 +124,7 @@ public class main extends Application{
         ChessBoard c = new ChessBoard();
         MonteCarloTree white = new MonteCarloTree(b, new Black(), 1);
         MonteCarloTree black = new MonteCarloTree(c, new Black(), 1);
-        black.setC(cConstant);
+        //black.setC(cConstant);
         Move best;
         while (!b.isCheckMate(new White()) || !b.isCheckMate(new Black())) {
             //System.out.println(Heuristics.probWin(b, new Black()));
@@ -201,6 +202,7 @@ public class main extends Application{
     }
 
     public void start(Stage stage) {
+        /*
         double c = .075;
         ArrayList<Double> results = new ArrayList();
         for (c = .025; c < .2; c += .015) {
@@ -211,5 +213,10 @@ public class main extends Application{
             System.out.println("(" + Double.toString(c) + ", " + Double.toString(results.get(x)) + ")");
             x++;
         }
+        */
+        ChessBoard b = new ChessBoard();
+        PositionEval.probWin(b, new White());
+
+
     }
 }

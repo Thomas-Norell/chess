@@ -199,6 +199,9 @@ public class ChessBoard {
     public boolean isDraw(Color player, MonteCarloTree m) {
         return isDraw(player, m.allMoves());
     }
+    public Square[] getBoard() {
+        return board;
+    }
 
     public boolean isStaleMate(Color player, ArrayList<Move> moves) {
         King wKing = null;
@@ -212,7 +215,7 @@ public class ChessBoard {
             throw new Error("Couldn't find a king!");
         }
 
-        if (!wKing.isChecked() && moves.size() == 0) {
+        if (!wKing.isChecked() && moves != null && moves.size() == 0) {
             return true;
         }
         return false;

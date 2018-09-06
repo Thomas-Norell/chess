@@ -1,12 +1,15 @@
 package engine;
 import board.*;
+import evaluation.PositionEval;
+
 import java.util.ArrayList;
 import java.util.Random;
 
 public class MonteCarloTree {
     //private ArrayHeap<Node> heap;
     private double strength;
-    private double c = Math.sqrt(2);
+    private double c = .075;
+    public boolean useNeuralNet = false;
     public Node root;
     public MonteCarloTree(ChessBoard board, Color player, double strength) {
         //this.heap = new ArrayHeap();
@@ -36,6 +39,8 @@ public class MonteCarloTree {
         }
         System.out.println(root.numDescendents);
         //System.out.println(Integer.toString(root.numDescendents) + " " + Double.toString(bestMove.numDescendents/average).substring(0, 4) + " " + Double.toString(bestMove.wins/bestMove.numDescendents).substring(0, 4));
+        System.out.println(PositionEval.probWin(root.board, root.player));
+        System.out.println(PositionEval.probWin(root.board, root.player.opposite()));
         return bestMove.move;
     }
     public void advance(Move m) {
@@ -126,7 +131,13 @@ public class MonteCarloTree {
             for (Move move : movesLeft) {
                 allMoves.add(move);
             }
-            wins = Heuristics.probWin(board, player, this);
+            if (useNeuralNet) {
+                wins = PositionEval.probWin(board, player);
+            }
+            else {
+                wins = Heuristics.probWin(board, player, this);
+            }
+
 
             priority = calcVals(this);
             move = m;

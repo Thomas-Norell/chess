@@ -18,6 +18,7 @@ import javafx.scene.media.Media;
 import javafx.scene.control.ToolBar;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.control.CheckBox;
 
 public class Visualizer extends Application{
 
@@ -126,12 +127,16 @@ public class Visualizer extends Application{
         ImageView switchbtn = new ImageView(new Image("images/switch.png"));
         switchbtn.setFitHeight(15);
         switchbtn.setFitWidth(15);
+        CheckBox cb = new CheckBox("Second");
+        cb.setText("Use Neural Net");
+        cb.setSelected(false);
         Button btnNew = new Button("", switchbtn);
         Slider difficulty = new Slider(0.1, 60.0, 1);
         difficulty.showTickMarksProperty();
         difficulty.showTickLabelsProperty();
         toolBar.getItems().add(btnNew);
         toolBar.getItems().add(difficulty);
+        toolBar.getItems().add(cb);
         BorderPane pane = new BorderPane();
         pane.setBottom(toolBar);
         pane.setTop(gridPane);
@@ -151,6 +156,14 @@ public class Visualizer extends Application{
 
         this.ponder = new Ponder( this.tree);
         ponder.start();
+
+        cb.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                tree.useNeuralNet = cb.isSelected();
+            }
+        });
+
+
         gridPane.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
