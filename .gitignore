@@ -7,3 +7,5 @@ META-INF
 trainingGames
 trainingGamesreal
 validationGames
+/javalib
+javalib/jni/libtensorflow_jni.dylib
