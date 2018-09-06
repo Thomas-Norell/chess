@@ -163,7 +163,6 @@ public class Visualizer extends Application{
             }
         });
 
-
         gridPane.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
